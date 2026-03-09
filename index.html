@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>undust.</title>
+  <meta name="description" content="On dépoussière les pratiques, les méthodes et les gens qui se battent pour bien faire.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #080808;
+      --fg: #e8e4df;
+      --fg-dim: #6b6560;
+      --fg-accent: #c4a882;
+      --font: 'JetBrains Mono', monospace;
+    }
+
+    html { font-size: 24px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      font-weight: 300;
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+      overflow-wrap: break-word;
+      word-break: keep-all;
+      hyphens: none;
+    }
+
+    /* ===== HERO ===== */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 2.5rem;
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .mark {
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--fg-dim);
+      margin-bottom: 3rem;
+      display: block;
+    }
+
+    .mark strong {
+      color: var(--fg-accent);
+      font-weight: 300;
+    }
+
+    .punch {
+      font-size: 1.55rem;
+      font-weight: 400;
+      line-height: 1.5;
+      max-width: 680px;
+    }
+
+    .punch strong {
+      color: var(--fg-accent);
+      font-weight: 500;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: #2a2520;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.25; }
+      50% { opacity: 0.6; }
+    }
+
+    /* ===== CORPS ===== */
+
+    .body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 20vh;
+    }
+
+    p {
+      margin-bottom: 1.6rem;
+      font-size: 0.88rem;
+    }
+
+    .lead {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.75;
+    }
+
+    .beat {
+      font-size: 1.1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--fg-accent);
+      margin: 5vh 0;
+      line-height: 1.6;
+    }
+
+    .beat-solo {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--fg);
+      margin: 8vh 0;
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-top: 12vh;
+      margin-bottom: 2.5rem;
+    }
+
+    .proof {
+      font-size: 0.8rem;
+      font-weight: 400;
+      line-height: 2.2;
+      color: var(--fg-dim);
+      margin: 3rem 0;
+      padding-left: 1.5rem;
+      border-left: 2px solid #1e1b18;
+    }
+
+    .proof strong {
+      color: var(--fg);
+      font-weight: 400;
+    }
+
+    .neg {
+      font-size: 0.82rem;
+      line-height: 2.2;
+      color: var(--fg-dim);
+    }
+
+    .neg strong {
+      color: var(--fg);
+      font-weight: 400;
+    }
+
+    .now-item {
+      margin-bottom: 2.5rem;
+    }
+
+    .now-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg-accent);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .now-item p {
+      margin-bottom: 0;
+      font-size: 0.85rem;
+      color: var(--fg-dim);
+    }
+
+    /* ===== PIVOT ===== */
+
+    .pivot {
+      margin: 8vh 0;
+      padding: 2.5rem 0;
+      border-top: 1px solid #1a1815;
+      border-bottom: 1px solid #1a1815;
+    }
+
+    .pivot p {
+      font-size: 0.9rem;
+      font-weight: 400;
+      line-height: 2;
+      color: var(--fg);
+      margin-bottom: 0.4rem;
+    }
+
+    .pivot p:last-child {
+      margin-bottom: 0;
+    }
+
+    .pivot .pivot-dim {
+      color: var(--fg-dim);
+    }
+
+    /* ===== SIGNAUX ===== */
+
+    .signals {
+      margin-top: 2rem;
+    }
+
+    .signal {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid #141210;
+      cursor: default;
+      transition: border-color 0.3s ease;
+    }
+
+    .signal:first-child {
+      border-top: 1px solid #141210;
+    }
+
+    .signal:hover {
+      border-color: #2a2520;
+    }
+
+    .signal-num {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: #2a2520;
+      min-width: 2rem;
+      text-align: right;
+      transition: color 0.3s ease;
+    }
+
+    .signal:hover .signal-num {
+      color: var(--fg-accent);
+    }
+
+    .signal-text {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--fg-dim);
+      line-height: 1.65;
+      transition: color 0.3s ease;
+    }
+
+    .signal:hover .signal-text {
+      color: var(--fg);
+    }
+
+    /* ===== KANBAN ===== */
+
+    .kanban {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .kanban-col {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .kanban-col-past {
+      max-height: 260px;
+      overflow-y: hidden;
+      position: relative;
+      transition: max-height 0.6s ease;
+    }
+
+    .kanban-col-past::after {
+      content: '';
+      position: sticky;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .kanban-col-past:hover {
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .kanban-col-past:hover::after {
+      opacity: 0;
+    }
+
+    .kanban-col-past::-webkit-scrollbar { width: 2px; }
+    .kanban-col-past::-webkit-scrollbar-track { background: transparent; }
+    .kanban-col-past::-webkit-scrollbar-thumb { background: #1e1b18; border-radius: 2px; }
+    .kanban-col-past:hover::-webkit-scrollbar-thumb { background: var(--fg-dim); }
+
+    .kanban-col-now {
+      position: sticky;
+      top: 2rem;
+      align-self: flex-start;
+    }
+
+    .kanban-label {
+      font-size: 0.5rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #2a2520;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .kanban {
+        flex-direction: column;
+        gap: 3rem;
+      }
+      .kanban-col-past {
+        max-height: none;
+        overflow-y: visible;
+      }
+      .kanban-col-past::after { display: none; }
+      .kanban-col-now {
+        position: static;
+      }
+    }
+
+    /* ===== CHANTIERS ===== */
+
+    .chantiers {
+      margin-top: 2rem;
+    }
+
+    .chantier {
+      margin-bottom: 3rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid #1e1b18;
+      transition: border-color 0.3s ease;
+    }
+
+    .chantier:hover {
+      border-left-color: var(--fg-accent);
+    }
+
+    .chantier-name {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg-accent);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .chantier-with {
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: #2a2520;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .chantier p {
+      margin-bottom: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--fg-dim);
+    }
+
+    .chantier-link {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--fg-dim);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .chantier-link:hover {
+      color: var(--fg-accent);
+    }
+
+    .chantier-soon {
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: #2a2520;
+      font-style: italic;
+    }
+
+    .who {
+      color: var(--fg-dim);
+      font-size: 0.85rem;
+    }
+
+    .who strong {
+      color: var(--fg);
+      font-weight: 400;
+    }
+
+    .sep {
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: #1e1b18;
+      margin: 6vh 0;
+    }
+
+    /* ===== CONTACT ===== */
+
+    .contact {
+      margin-top: 12vh;
+      padding-top: 4rem;
+      border-top: 1px solid #1a1815;
+    }
+
+    .contact .cta {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--fg);
+      margin-bottom: 0.8rem;
+      font-style: normal;
+      line-height: 1.7;
+    }
+
+    .contact .cta-sub {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--fg-dim);
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    .contact a {
+      color: var(--fg-accent);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .contact a:hover { color: var(--fg); }
+
+    .social {
+      margin-top: 1.5rem;
+    }
+
+    .social a {
+      color: var(--fg-dim);
+      font-size: 0.65rem;
+      text-decoration: none;
+      margin-right: 1.5rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .social a:hover { color: var(--fg); }
+
+    /* ===== SCROLL REVEAL (dust dissipation) ===== */
+
+    .s {
+      opacity: 0;
+      filter: blur(4px) sepia(0.5) brightness(0.85);
+      transform: translateY(8px);
+      transition: opacity 0.9s ease, filter 1.5s ease, transform 0.9s ease;
+    }
+
+    .s.visible {
+      opacity: 1;
+      filter: blur(0) sepia(0) brightness(1);
+      transform: translateY(0);
+    }
+
+    .hero .s {
+      filter: blur(6px) sepia(0.5) brightness(0.85);
+      transform: translateY(12px);
+      transition: opacity 1.2s ease, filter 1.8s ease, transform 1.2s ease;
+    }
+
+    .hero .s.visible {
+      opacity: 1;
+      filter: blur(0) sepia(0) brightness(1);
+      transform: translateY(0);
+    }
+
+    .hero .s:nth-child(2) { transition-delay: 0.6s; }
+
+    /* Mark: chars handle their own animation */
+    .hero .mark.s {
+      filter: none;
+      transform: none;
+      transition: opacity 0.01s;
+    }
+    .hero .mark.s.visible {
+      filter: none;
+      transform: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+
+    @media (max-width: 600px) {
+      html { font-size: 22px; }
+      .hero { padding: 0 1.25rem; }
+      .punch { font-size: 1.2rem; }
+      .body { padding: 0 1.25rem 15vh; }
+      .beat-solo { font-size: 1.1rem; }
+      h2 { margin-top: 8vh; }
+    }
+
+    /* ===== DUST CANVAS ===== */
+
+    #dust-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero, .body { position: relative; z-index: 2; }
+
+    /* ===== FILM GRAIN ===== */
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      background-repeat: repeat;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 1001;
+      animation: grain 6s steps(8) infinite;
+    }
+
+    @keyframes grain {
+      0%, 100% { background-position: 0 0; }
+      12.5% { background-position: -50px -100px; }
+      25% { background-position: -150px 50px; }
+      37.5% { background-position: 70px -200px; }
+      50% { background-position: -100px 150px; }
+      62.5% { background-position: -200px 80px; }
+      75% { background-position: 30px -120px; }
+      87.5% { background-position: -80px 60px; }
+    }
+
+    /* ===== TYPOGRAPHY: Character animation ===== */
+
+    .char {
+      display: inline-block;
+      white-space: pre;
+    }
+
+    /* Hero mark: scatter → assemble on load */
+    .mark .char {
+      opacity: 0;
+      transform: translate(
+        calc(var(--rx) * 45px),
+        calc(var(--ry) * 30px)
+      ) rotate(calc(var(--rx) * 18deg));
+      filter: blur(2px);
+      transition: all 1.3s cubic-bezier(0.23, 1, 0.32, 1);
+      transition-delay: calc(0.2s + var(--i) * 0.055s);
+    }
+
+    .mark.visible .char {
+      opacity: 1;
+      transform: translate(0, 0) rotate(0);
+      filter: blur(0);
+    }
+
+    /* Beat / beat-solo: scatter on hover */
+    .scatter-hover .char {
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+                  opacity 0.5s ease,
+                  filter 0.5s ease;
+      transition-delay: calc(var(--i) * 0.006s);
+    }
+
+    .scatter-hover:hover .char {
+      transform: translate(
+        calc(var(--rx) * 8px),
+        calc(var(--ry) * 5px)
+      ) rotate(calc(var(--rx) * 3deg));
+      opacity: 0.35;
+      filter: blur(1.5px);
+    }
+
+    /* ===== MICRO-INTERACTIONS: Dust puffs ===== */
+
+    .dust-puff {
+      position: fixed;
+      width: var(--s, 2px);
+      height: var(--s, 2px);
+      background: var(--fg-accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      animation: puff 0.85s ease-out forwards;
+    }
+
+    @keyframes puff {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translate(var(--dx), var(--dy)) scale(0);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="dust-canvas"></canvas>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <span class="mark s">un<strong>dust</strong>.</span>
+
+  <p class="punch s">
+    <strong>Un angle mort de 5,7&nbsp;millions d'euros.</strong>
+    Combien sous votre poussière&nbsp;?
+  </p>
+
+  <span class="scroll-hint">&darr;</span>
+</section>
+
+<!-- ==================== MANIFESTE ==================== -->
+<div class="body">
+
+  <p class="beat-solo s">Ces modes de fonctionnement cassés cassent les gens. Et les gens cassés ne réparent pas les systèmes.</p>
+
+  <p class="s">La poussière s'accumule. Les méthodes dorment dans des classeurs. Les experts partent avec tout ce qu'ils savent. Les équipes répètent des gestes sans comprendre pourquoi. C'est classé en non-sujet.</p>
+
+  <span class="sep s"></span>
+
+  <!-- LA CONVICTION -->
+  <h2 class="s">La conviction</h2>
+
+  <p class="lead s">Chaque personne mérite un travail qui l'élève, pas qui l'écrase.</p>
+
+  <p class="s">Il y a des gens qui savent, qui font, qui font bien, qui se donnent du mal. Des irréductibles qui résistent dans des systèmes qui les étouffent. Ils n'ont pas besoin qu'on leur explique quoi faire. Ils ont besoin qu'on leur donne un truc qui les libère.</p>
+
+  <span class="sep s"></span>
+
+  <!-- LE GESTE -->
+  <h2 class="s">Le geste</h2>
+
+  <p class="s">Je détecte les paradigmes cassés. Je trouve les gens qui se battent à l'intérieur. Et je construis ce qui manque pour que ça bouge&thinsp;: les outils, les méthodes, les plateformes.</p>
+
+  <p class="neg s">
+    <strong>Pas du conseil.</strong> Pas de slides. Pas de formation.<br>
+    Du code. Des méthodes. Des choses qui tournent.
+  </p>
+
+  <p class="beat s">Du dépoussiérage.</p>
+
+  <!-- LE PIVOT -->
+  <div class="pivot s">
+    <p>On trouve des experts qui ont une méthode qui marche.</p>
+    <p>On construit le système qui fait que ça marche sans eux.</p>
+    <p class="pivot-dim">Code, méthodes, IA. Pas de slides.</p>
+  </div>
+
+  <span class="sep s"></span>
+
+  <!-- SIGNAUX -->
+  <h2 class="s">Signaux</h2>
+
+  <div class="signals s">
+    <div class="signal">
+      <span class="signal-num">01.</span>
+      <span class="signal-text">Les 5,7M&euro; étaient un non-sujet. Personne ne les avait commandés.</span>
+    </div>
+    <div class="signal">
+      <span class="signal-num">02.</span>
+      <span class="signal-text">Un expert sans système, c'est une méthode qui meurt avec lui.</span>
+    </div>
+    <div class="signal">
+      <span class="signal-num">03.</span>
+      <span class="signal-text">Le terrain invente mieux que le bureau. Toujours.</span>
+    </div>
+    <div class="signal">
+      <span class="signal-num">04.</span>
+      <span class="signal-text">Un refus d'attendre. On construit ce qui manque.</span>
+    </div>
+    <div class="signal">
+      <span class="signal-num">05.</span>
+      <span class="signal-text">Les blouses rouges ne parlaient pas aux blanches. Le problème n'était pas technique.</span>
+    </div>
+    <div class="signal">
+      <span class="signal-num">06.</span>
+      <span class="signal-text">De 9 mois à 2 semaines. Le même geste, des terrains différents.</span>
+    </div>
+    <div class="signal">
+      <span class="signal-num">07.</span>
+      <span class="signal-text">La poussière s'accumule parce que tout le monde s'en accommode.</span>
+    </div>
+  </div>
+
+  <span class="sep s"></span>
+
+  <!-- CHANTIERS -->
+  <h2 class="s">Chantiers</h2>
+
+  <div class="kanban s">
+
+    <!-- Colonne gauche : passes (scrollable au hover) -->
+    <div class="kanban-col kanban-col-past">
+      <span class="kanban-label">Passés</span>
+
+      <div class="chantier">
+        <span class="chantier-name">Valeo</span>
+        <p>1,5M&euro; économisés. Les blouses rouges ne parlaient pas aux blanches.</p>
+      </div>
+
+      <div class="chantier">
+        <span class="chantier-name">Hitachi Rail</span>
+        <p>De 9 mois à 2 semaines de conception. 2,9M&euro;. Burnout en prime.</p>
+      </div>
+
+      <div class="chantier">
+        <span class="chantier-name">Hall&thinsp;32</span>
+        <p>Un lab d'innovation. CA qui doublait chaque année. Tout s'effondre au départ du fondateur.</p>
+      </div>
+
+    </div>
+
+    <!-- Colonne droite : en cours (fixe) -->
+    <div class="kanban-col kanban-col-now">
+      <span class="kanban-label">En cours</span>
+
+      <div class="chantier">
+        <span class="chantier-name">EC&sup2;R</span>
+        <span class="chantier-with">avec Stéphane Flahaut</span>
+        <p>Méthode de mobilisation des énergies collectives. Numérisée. Mentor IA, plateforme complète.</p>
+        <a href="https://ec2r-conseil.fr" target="_blank" rel="noopener" class="chantier-link">&rarr; ec2r-conseil.fr</a>
+      </div>
+
+      <div class="chantier">
+        <span class="chantier-name">Antifragile Hardware</span>
+        <span class="chantier-with">renaissance technique des PME</span>
+        <p>Méthodes de conception, traçabilité, culture d'équipe. Depuis le terrain.</p>
+        <span class="chantier-soon">&rarr; en construction</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <span class="sep s"></span>
+
+  <!-- QUI -->
+  <h2 class="s">Qui</h2>
+
+  <p class="who s"><strong>Luc Létoffé.</strong> Ingénieur de formation. Quinze ans à transformer des équipes techniques depuis l'intérieur. Aujourd'hui indépendant, je construis les outils et les systèmes que j'aurais voulu trouver.</p>
+
+  <!-- CONTACT -->
+  <div class="contact s">
+    <p class="cta">Vous avez une méthode qui marche.<br>Mais elle ne tient que par vous.</p>
+    <p class="cta-sub">On peut construire le système qui la rend irréversible.</p>
+    <a id="email"></a>
+    <div class="social">
+      <a href="https://linkedin.com/in/lucletoffe" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/lucletoffe" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://youtube.com/@lucletoffe" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ── Email obfuscation ──
+  var e = document.getElementById('email');
+  var a = 'luc', b = 'undust.co';
+  e.href = 'mai' + 'lto:' + a + '@' + b;
+  e.textContent = a + '@' + b;
+
+  // ── Text splitting ──
+  function splitChars(el) {
+    var idx = 0;
+    function walk(node, parent) {
+      if (node.nodeType === 3) {
+        var t = node.textContent;
+        var f = document.createDocumentFragment();
+        for (var i = 0; i < t.length; i++) {
+          var s = document.createElement('span');
+          s.textContent = t[i];
+          s.className = 'char';
+          s.style.setProperty('--i', idx);
+          s.style.setProperty('--rx', (Math.random() - 0.5) * 2);
+          s.style.setProperty('--ry', (Math.random() - 0.5) * 2);
+          idx++;
+          f.appendChild(s);
+        }
+        parent.replaceChild(f, node);
+      } else if (node.nodeType === 1) {
+        Array.prototype.slice.call(node.childNodes).forEach(function(c) {
+          walk(c, node);
+        });
+      }
+    }
+    Array.prototype.slice.call(el.childNodes).forEach(function(c) {
+      walk(c, el);
+    });
+  }
+
+  // Hero mark: scatter → assemble
+  var mark = document.querySelector('.mark');
+  if (mark) splitChars(mark);
+
+  // Hover scatter on titles, key phrases, beat elements
+  document.querySelectorAll('.beat, .beat-solo, h2, .lead, .cta, .cta-sub, .neg, .pivot p').forEach(function(el) {
+    splitChars(el);
+    el.classList.add('scatter-hover');
+  });
+
+  // ── Scroll reveal ──
+  var revealEls = document.querySelectorAll('.s');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    revealEls.forEach(function(el) { obs.observe(el); });
+  } else {
+    revealEls.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  setTimeout(function() {
+    document.querySelectorAll('.hero .s').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }, 100);
+
+  // ── Dust particles (canvas) ──
+  var canvas = document.getElementById('dust-canvas');
+  if (canvas && canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    var mX = -1000, mY = -1000;
+    var N = window.innerWidth < 600 ? 30 : 65;
+    var particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function mkP() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 0.4,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: (Math.random() - 0.5) * 0.14 - 0.03,
+        a: Math.random() * 0.3 + 0.05,
+        ph: Math.random() * Math.PI * 2,
+        c: Math.random() > 0.5 ? '196,168,130' : '107,101,96'
+      };
+    }
+
+    resize();
+    for (var i = 0; i < N; i++) particles.push(mkP());
+
+    (function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var t = Date.now();
+      for (var j = 0; j < particles.length; j++) {
+        var p = particles[j];
+        // Mouse repulsion
+        var dx = p.x - mX, dy = p.y - mY;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 100 && d > 0) {
+          var f = (100 - d) / 100 * 0.5;
+          p.x += dx / d * f;
+          p.y += dy / d * f;
+        }
+        // Organic drift
+        p.x += p.vx + Math.sin(t * 0.0005 + p.ph) * 0.08;
+        p.y += p.vy + Math.cos(t * 0.0004 + p.ph) * 0.06;
+        // Wrap
+        if (p.x < -5) p.x = canvas.width + 5;
+        if (p.x > canvas.width + 5) p.x = -5;
+        if (p.y < -5) p.y = canvas.height + 5;
+        if (p.y > canvas.height + 5) p.y = -5;
+        // Draw with opacity pulse
+        var ao = p.a * (0.7 + 0.3 * Math.sin(t * 0.001 + p.ph * 3));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 6.283);
+        ctx.fillStyle = 'rgba(' + p.c + ',' + ao + ')';
+        ctx.fill();
+      }
+      requestAnimationFrame(loop);
+    })();
+
+    window.addEventListener('resize', resize);
+    document.addEventListener('mousemove', function(ev) { mX = ev.clientX; mY = ev.clientY; });
+    document.addEventListener('mouseleave', function() { mX = mY = -1000; });
+    document.addEventListener('touchmove', function(ev) {
+      if (ev.touches.length) { mX = ev.touches[0].clientX; mY = ev.touches[0].clientY; }
+    }, { passive: true });
+    document.addEventListener('touchend', function() { mX = mY = -1000; });
+  }
+
+  // ── Dust puffs (micro-interactions) ──
+  function puff(x, y, n) {
+    for (var i = 0; i < n; i++) {
+      (function() {
+        var el = document.createElement('div');
+        el.className = 'dust-puff';
+        var angle = Math.random() * 6.283;
+        var dist = Math.random() * 30 + 12;
+        el.style.left = x + 'px';
+        el.style.top = y + 'px';
+        el.style.setProperty('--dx', (Math.cos(angle) * dist) + 'px');
+        el.style.setProperty('--dy', (Math.sin(angle) * dist - 12) + 'px');
+        el.style.setProperty('--s', (Math.random() * 2.5 + 1) + 'px');
+        el.style.animationDelay = (Math.random() * 0.1) + 's';
+        document.body.appendChild(el);
+        setTimeout(function() { el.remove(); }, 1100);
+      })();
+    }
+  }
+
+  document.querySelectorAll('h2, .lead, .neg, .who, .beat, .beat-solo, .contact a, .social a, .cta, .cta-sub, .punch, .sep, .signal, .chantier, .chantier-name, .chantier-link, .kanban-label, .pivot').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      var r = el.getBoundingClientRect();
+      var n = r.width > 400 ? 12 : 8;
+      puff(r.left + r.width / 2, r.top + r.height / 2, n);
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
