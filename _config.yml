@@ -1,0 +1,4 @@
+# GitHub Pages Jekyll config
+# Include .well-known directory (dot-directories excluded by default)
+include:
+  - ".well-known"
