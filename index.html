@@ -435,8 +435,18 @@
       font-size: 0.85rem;
       font-weight: 300;
       color: var(--fg-dim);
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
       font-style: italic;
+    }
+
+    .contact .cta-direct {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--fg-dim);
+      margin-bottom: 2rem;
+      font-style: italic;
+      border-left: 1px solid var(--fg-accent);
+      padding-left: 0.75rem;
     }
 
     .contact a {
@@ -750,9 +760,9 @@
       </div>
 
       <div class="chantier">
-        <span class="chantier-name">Antifragile Hardware</span>
-        <span class="chantier-with">renaissance technique des PME</span>
-        <p>Méthodes de conception, traçabilité, culture d'équipe. Depuis le terrain.</p>
+        <span class="chantier-name">TRACE7</span>
+        <span class="chantier-with">avec Gilles Glémarec</span>
+        <p>Ingénierie de fiabilité pour sitesindustries. Analyse predictive, maintenance, coordination terrain.</p>
         <span class="chantier-soon">&rarr; en construction</span>
       </div>
 
@@ -771,6 +781,7 @@
   <div class="contact s">
     <p class="cta">Vous avez une méthode qui marche.<br>Mais elle ne tient que par vous.</p>
     <p class="cta-sub">On peut construire le système qui la rend irréversible.</p>
+    <p class="cta-direct">Un expert. Une méthode qui tient. Un système qui survit au départ.</p>
     <a id="email"></a>
     <div class="social">
       <a href="https://linkedin.com/in/lucletoffe" target="_blank" rel="noopener">LinkedIn</a>
@@ -825,7 +836,7 @@
   if (mark) splitChars(mark);
 
   // Hover scatter on titles, key phrases, beat elements
-  document.querySelectorAll('.beat, .beat-solo, h2, .lead, .cta, .cta-sub, .neg, .pivot p').forEach(function(el) {
+  document.querySelectorAll('.beat, .beat-solo, h2, .lead, .cta, .cta-sub, .cta-direct, .neg, .pivot p').forEach(function(el) {
     splitChars(el);
     el.classList.add('scatter-hover');
   });
