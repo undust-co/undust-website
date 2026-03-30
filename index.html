@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>undust.</title>
-  <meta name="description" content="On dépoussière les pratiques, les méthodes et les gens qui se battent pour bien faire.">
+  <meta name="description" content="On détecte les paradigmes cassés. On construit ce qui manque.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -12,837 +12,990 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #080808;
-      --fg: #e8e4df;
-      --fg-dim: #6b6560;
-      --fg-accent: #c4a882;
-      --font: 'JetBrains Mono', monospace;
+      --bg: #1a1a1a;
+      --surface: #242424;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent: #ff6b35;
+      --accent-dim: rgba(255, 107, 53, 0.15);
+      --border: #4a4a4a;
+      --border-dim: #2a2a2a;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
     }
 
-    html { font-size: 24px; scroll-behavior: smooth; }
+    html { font-size: 18px; scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
-      color: var(--fg);
-      font-family: var(--font);
+      color: var(--text);
+      font-family: var(--font-mono);
       font-weight: 300;
-      line-height: 1.85;
+      line-height: 1.75;
       -webkit-font-smoothing: antialiased;
       overflow-wrap: break-word;
-      word-break: keep-all;
-      hyphens: none;
     }
 
-    /* ===== HERO ===== */
+    /* ===== 1. LE PACTE (viewport entier) ===== */
 
-    .hero {
+    .pacte {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0 2.5rem;
-      max-width: 820px;
+      padding: 4rem 2rem;
+      max-width: 760px;
       margin: 0 auto;
       position: relative;
     }
 
-    .mark {
-      font-size: 1rem;
+    .pacte-mark {
+      font-size: 1.1rem;
       font-weight: 300;
-      letter-spacing: 0.25em;
-      color: var(--fg-dim);
-      margin-bottom: 3rem;
-      display: block;
+      color: var(--text-muted);
+      margin-bottom: 3.5rem;
+      letter-spacing: 0.05em;
     }
 
-    .mark strong {
-      color: var(--fg-accent);
-      font-weight: 300;
-    }
-
-    .punch {
-      font-size: 1.55rem;
+    .pacte-text {
+      font-size: 1.25rem;
       font-weight: 400;
-      line-height: 1.5;
-      max-width: 680px;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+      color: var(--text);
     }
 
-    .punch strong {
-      color: var(--fg-accent);
+    .pacte-conditions {
+      list-style: none;
+      margin: 2rem 0;
+    }
+
+    .pacte-conditions li {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      padding: 0.4rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .pacte-conditions li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .pacte-conditions li strong {
+      color: var(--text);
       font-weight: 500;
     }
 
-    .scroll-hint {
+    .scroll-indicator {
       position: absolute;
       bottom: 2.5rem;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      color: #2a2520;
-      animation: pulse 2.5s ease-in-out infinite;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--border);
+      animation: bounce 2.5s ease-in-out infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 0.25; }
-      50% { opacity: 0.6; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.3; }
+      50% { transform: translateX(-50%) translateY(6px); opacity: 0.7; }
     }
 
-    /* ===== CORPS ===== */
+    /* ===== 2. CICATRICES + ACTUELLEMENT ===== */
 
-    .body {
-      max-width: 900px;
+    .deux-colonnes {
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 0 2rem 20vh;
+      padding: 8rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
     }
 
-    p {
-      margin-bottom: 1.6rem;
-      font-size: 0.88rem;
+    @media (max-width: 768px) {
+      .deux-colonnes {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 5rem 1.5rem;
+      }
     }
 
-    .lead {
-      font-size: 1rem;
+    .section-title {
+      font-size: 0.6rem;
       font-weight: 400;
-      line-height: 1.75;
-    }
-
-    .beat {
-      font-size: 1.1rem;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--fg-accent);
-      margin: 5vh 0;
-      line-height: 1.6;
-    }
-
-    .beat-solo {
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--fg);
-      margin: 8vh 0;
-      line-height: 1.5;
-    }
-
-    h2 {
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--fg-dim);
-      margin-top: 12vh;
+      color: var(--border);
       margin-bottom: 2.5rem;
-    }
-
-    .proof {
-      font-size: 0.8rem;
-      font-weight: 400;
-      line-height: 2.2;
-      color: var(--fg-dim);
-      margin: 3rem 0;
-      padding-left: 1.5rem;
-      border-left: 2px solid #1e1b18;
-    }
-
-    .proof strong {
-      color: var(--fg);
-      font-weight: 400;
-    }
-
-    .neg {
-      font-size: 0.82rem;
-      line-height: 2.2;
-      color: var(--fg-dim);
-    }
-
-    .neg strong {
-      color: var(--fg);
-      font-weight: 400;
-    }
-
-    .now-item {
-      margin-bottom: 2.5rem;
-    }
-
-    .now-label {
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--fg-accent);
       display: block;
-      margin-bottom: 0.5rem;
     }
 
-    .now-item p {
-      margin-bottom: 0;
+    .cicatrices-list {
+      list-style: none;
+    }
+
+    .cicatrice {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border-dim);
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+
+    .cicatrice:first-child {
+      border-top: 1px solid var(--border-dim);
+    }
+
+    .cicatrice:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .cicatrice-name {
       font-size: 0.85rem;
-      color: var(--fg-dim);
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.25rem;
     }
 
-    /* ===== PIVOT ===== */
-
-    .pivot {
-      margin: 8vh 0;
-      padding: 2.5rem 0;
-      border-top: 1px solid #1a1815;
-      border-bottom: 1px solid #1a1815;
+    .cicatrice-chiffre {
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
     }
 
-    .pivot p {
-      font-size: 0.9rem;
-      font-weight: 400;
-      line-height: 2;
-      color: var(--fg);
+    .cicatrice-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .actuellement-list {
+      list-style: none;
+    }
+
+    .actuellement-item {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .actuellement-item:first-child {
+      border-top: 1px solid var(--border-dim);
+    }
+
+    .actuellement-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .actuellement-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
       margin-bottom: 0.4rem;
     }
 
-    .pivot p:last-child {
-      margin-bottom: 0;
-    }
-
-    .pivot .pivot-dim {
-      color: var(--fg-dim);
-    }
-
-    /* ===== SIGNAUX ===== */
-
-    .signals {
-      margin-top: 2rem;
-    }
-
-    .signal {
-      display: flex;
-      align-items: baseline;
-      gap: 1.2rem;
-      padding: 1.1rem 0;
-      border-bottom: 1px solid #141210;
-      cursor: default;
-      transition: border-color 0.3s ease;
-    }
-
-    .signal:first-child {
-      border-top: 1px solid #141210;
-    }
-
-    .signal:hover {
-      border-color: #2a2520;
-    }
-
-    .signal-num {
-      font-size: 0.6rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      color: #2a2520;
-      min-width: 2rem;
-      text-align: right;
-      transition: color 0.3s ease;
-    }
-
-    .signal:hover .signal-num {
-      color: var(--fg-accent);
-    }
-
-    .signal-text {
-      font-size: 0.82rem;
-      font-weight: 300;
-      color: var(--fg-dim);
-      line-height: 1.65;
-      transition: color 0.3s ease;
-    }
-
-    .signal:hover .signal-text {
-      color: var(--fg);
-    }
-
-    /* ===== KANBAN ===== */
-
-    .kanban {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 2rem;
-    }
-
-    .kanban-col {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .kanban-col-past {
-      max-height: 260px;
-      overflow-y: hidden;
-      position: relative;
-      transition: max-height 0.6s ease;
-    }
-
-    .kanban-col-past::after {
-      content: '';
-      position: sticky;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: block;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, var(--bg));
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-
-    .kanban-col-past:hover {
-      max-height: 600px;
-      overflow-y: auto;
-    }
-
-    .kanban-col-past:hover::after {
-      opacity: 0;
-    }
-
-    .kanban-col-past::-webkit-scrollbar { width: 2px; }
-    .kanban-col-past::-webkit-scrollbar-track { background: transparent; }
-    .kanban-col-past::-webkit-scrollbar-thumb { background: #1e1b18; border-radius: 2px; }
-    .kanban-col-past:hover::-webkit-scrollbar-thumb { background: var(--fg-dim); }
-
-    .kanban-col-now {
-      position: sticky;
-      top: 2rem;
-      align-self: flex-start;
-    }
-
-    .kanban-label {
-      font-size: 0.5rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #2a2520;
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-
-    @media (max-width: 600px) {
-      .kanban {
-        flex-direction: column;
-        gap: 3rem;
-      }
-      .kanban-col-past {
-        max-height: none;
-        overflow-y: visible;
-      }
-      .kanban-col-past::after { display: none; }
-      .kanban-col-now {
-        position: static;
-      }
-    }
-
-    /* ===== CHANTIERS ===== */
-
-    .chantiers {
-      margin-top: 2rem;
-    }
-
-    .chantier {
-      margin-bottom: 3rem;
-      padding-left: 1.5rem;
-      border-left: 2px solid #1e1b18;
-      transition: border-color 0.3s ease;
-    }
-
-    .chantier:hover {
-      border-left-color: var(--fg-accent);
-    }
-
-    .chantier-name {
+    .actuellement-link {
       font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--fg-accent);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .chantier-with {
-      font-size: 0.65rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: #2a2520;
-      display: block;
-      margin-bottom: 0.8rem;
-    }
-
-    .chantier p {
-      margin-bottom: 0.6rem;
-      font-size: 0.82rem;
-      color: var(--fg-dim);
-    }
-
-    .chantier-link {
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      color: var(--fg-dim);
+      color: var(--text-muted);
       text-decoration: none;
       transition: color 0.3s ease;
     }
 
-    .chantier-link:hover {
-      color: var(--fg-accent);
+    .actuellement-link:hover {
+      color: var(--accent);
     }
 
-    .chantier-soon {
-      font-size: 0.7rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: #2a2520;
-      font-style: italic;
-    }
-
-    .who {
-      color: var(--fg-dim);
-      font-size: 0.85rem;
-    }
-
-    .who strong {
-      color: var(--fg);
-      font-weight: 400;
-    }
-
-    .sep {
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: #1e1b18;
-      margin: 6vh 0;
-    }
-
-    /* ===== CONTACT ===== */
-
-    .contact {
-      margin-top: 12vh;
-      padding-top: 4rem;
-      border-top: 1px solid #1a1815;
-    }
-
-    .contact .cta {
-      font-size: 0.95rem;
-      font-weight: 400;
-      color: var(--fg);
-      margin-bottom: 0.8rem;
-      font-style: normal;
-      line-height: 1.7;
-    }
-
-    .contact .cta-sub {
-      font-size: 0.85rem;
-      font-weight: 300;
-      color: var(--fg-dim);
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-
-    .contact .cta-direct {
-      font-size: 0.75rem;
-      font-weight: 300;
-      color: var(--fg-dim);
-      margin-bottom: 2rem;
-      font-style: italic;
-      border-left: 1px solid var(--fg-accent);
-      padding-left: 0.75rem;
-    }
-
-    .contact a {
-      color: var(--fg-accent);
-      text-decoration: none;
-      font-size: 0.85rem;
-    }
-
-    .contact a:hover { color: var(--fg); }
-
-    .social {
-      margin-top: 1.5rem;
-    }
-
-    .social a {
-      color: var(--fg-dim);
+    .en-construction {
       font-size: 0.65rem;
-      text-decoration: none;
-      margin-right: 1.5rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      color: var(--border);
+      font-style: italic;
     }
 
-    .social a:hover { color: var(--fg); }
+    /* ===== 3. TRANSITION PULSATION ===== */
 
-    /* ===== SCROLL REVEAL (dust dissipation) ===== */
-
-    .s {
-      opacity: 0;
-      filter: blur(4px) sepia(0.5) brightness(0.85);
-      transform: translateY(8px);
-      transition: opacity 0.9s ease, filter 1.5s ease, transform 0.9s ease;
+    .transition-pulse {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
     }
 
-    .s.visible {
-      opacity: 1;
-      filter: blur(0) sepia(0) brightness(1);
-      transform: translateY(0);
+    .transition-pulse .ligne-live {
+      animation: pulse 4s ease-in-out infinite;
     }
 
-    .hero .s {
-      filter: blur(6px) sepia(0.5) brightness(0.85);
-      transform: translateY(12px);
-      transition: opacity 1.2s ease, filter 1.8s ease, transform 1.2s ease;
+    .transition-pulse .ligne-past {
+      opacity: 0.3;
+      filter: blur(1px);
+      transition: opacity 0.6s ease, filter 0.6s ease;
     }
 
-    .hero .s.visible {
-      opacity: 1;
-      filter: blur(0) sepia(0) brightness(1);
-      transform: translateY(0);
-    }
-
-    .hero .s:nth-child(2) { transition-delay: 0.6s; }
-
-    /* Mark: chars handle their own animation */
-    .hero .mark.s {
-      filter: none;
-      transform: none;
-      transition: opacity 0.01s;
-    }
-    .hero .mark.s.visible {
-      filter: none;
-      transform: none;
-    }
-
-    /* ===== RESPONSIVE ===== */
-
-    @media (max-width: 600px) {
-      html { font-size: 22px; }
-      .hero { padding: 0 1.25rem; }
-      .punch { font-size: 1.2rem; }
-      .body { padding: 0 1.25rem 15vh; }
-      .beat-solo { font-size: 1.1rem; }
-      h2 { margin-top: 8vh; }
-    }
-
-    /* ===== DUST CANVAS ===== */
-
-    #dust-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .hero, .body { position: relative; z-index: 2; }
-
-    /* ===== FILM GRAIN ===== */
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 256px 256px;
-      background-repeat: repeat;
-      opacity: 0.03;
-      pointer-events: none;
-      z-index: 1001;
-      animation: grain 6s steps(8) infinite;
-    }
-
-    @keyframes grain {
-      0%, 100% { background-position: 0 0; }
-      12.5% { background-position: -50px -100px; }
-      25% { background-position: -150px 50px; }
-      37.5% { background-position: 70px -200px; }
-      50% { background-position: -100px 150px; }
-      62.5% { background-position: -200px 80px; }
-      75% { background-position: 30px -120px; }
-      87.5% { background-position: -80px 60px; }
-    }
-
-    /* ===== TYPOGRAPHY: Character animation ===== */
-
-    .char {
-      display: inline-block;
-      white-space: pre;
-    }
-
-    /* Hero mark: scatter → assemble on load */
-    .mark .char {
-      opacity: 0;
-      transform: translate(
-        calc(var(--rx) * 45px),
-        calc(var(--ry) * 30px)
-      ) rotate(calc(var(--rx) * 18deg));
-      filter: blur(2px);
-      transition: all 1.3s cubic-bezier(0.23, 1, 0.32, 1);
-      transition-delay: calc(0.2s + var(--i) * 0.055s);
-    }
-
-    .mark.visible .char {
-      opacity: 1;
-      transform: translate(0, 0) rotate(0);
+    .transition-pulse:hover .ligne-past {
+      opacity: 0.7;
       filter: blur(0);
     }
 
-    /* Beat / beat-solo: scatter on hover */
-    .scatter-hover .char {
-      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
-                  opacity 0.5s ease,
-                  filter 0.5s ease;
-      transition-delay: calc(var(--i) * 0.006s);
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 -2px 0 0 transparent; }
+      50% { box-shadow: 0 -3px 0 0 var(--accent); }
     }
 
-    .scatter-hover:hover .char {
-      transform: translate(
-        calc(var(--rx) * 8px),
-        calc(var(--ry) * 5px)
-      ) rotate(calc(var(--rx) * 3deg));
-      opacity: 0.35;
-      filter: blur(1.5px);
+    .ligne-registry {
+      display: grid;
+      grid-template-columns: 100px 1fr 1fr 100px;
+      gap: 1rem;
+      padding: 0.75rem 0.5rem;
+      border-bottom: 1px solid var(--border-dim);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: border-color 0.3s ease;
     }
 
-    /* ===== MICRO-INTERACTIONS: Dust puffs ===== */
-
-    .dust-puff {
-      position: fixed;
-      width: var(--s, 2px);
-      height: var(--s, 2px);
-      background: var(--fg-accent);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 999;
-      opacity: 0;
-      animation: puff 0.85s ease-out forwards;
+    .ligne-registry:hover {
+      border-bottom-color: var(--border);
     }
 
-    @keyframes puff {
-      0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 0.6;
+    .ligne-registry .col-date {
+      font-size: 0.7rem;
+    }
+
+    .ligne-registry .col-nom {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .ligne-registry .col-sujet {
+      color: var(--text-muted);
+    }
+
+    .ligne-registry .col-statut {
+      text-align: right;
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+    }
+
+    .statut-en-cours {
+      color: var(--accent);
+    }
+
+    .statut-mort {
+      color: var(--border);
+    }
+
+    .statut-deploye {
+      color: #4A7F8A;
+    }
+
+    /* ===== 4. LE REGISTRE ===== */
+
+    .registre {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem 8rem;
+    }
+
+    .registre-header {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--border);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .registre-table {
+      font-size: 0.8rem;
+    }
+
+    .registre-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 1fr 100px;
+      gap: 1rem;
+      padding: 0.7rem 0.5rem;
+      border-bottom: 1px solid var(--border-dim);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .registre-row:hover {
+      background: rgba(255, 107, 53, 0.03);
+    }
+
+    .registre-row .col-date {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .registre-row .col-nom {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .registre-row .col-sujet {
+      color: var(--text-muted);
+    }
+
+    .registre-row .col-statut {
+      text-align: right;
+      font-size: 0.65rem;
+    }
+
+    /* Detail expand */
+    .registre-detail {
+      display: none;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-dim);
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      line-height: 1.8;
+    }
+
+    .registre-detail.open {
+      display: block;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .detail-grid {
+        grid-template-columns: 1fr;
       }
-      100% {
-        transform: translate(var(--dx), var(--dy)) scale(0);
-        opacity: 0;
+    }
+
+    .detail-item {
+      color: var(--text-muted);
+    }
+
+    .detail-item strong {
+      color: var(--text);
+      font-weight: 400;
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Derniere ligne "Ton projet" */
+    .registre-row-next {
+      display: grid;
+      grid-template-columns: 100px 1fr 1fr 100px;
+      gap: 1rem;
+      padding: 0.7rem 0.5rem;
+      border-bottom: 1px solid var(--border-dim);
+      font-size: 0.8rem;
+      border: 1px solid var(--accent);
+      background: var(--accent-dim);
+      margin-top: 0.5rem;
+    }
+
+    .registre-row-next .col-date {
+      font-size: 0.7rem;
+      color: var(--accent);
+    }
+
+    .registre-row-next .col-nom {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .registre-row-next .col-sujet {
+      color: var(--text-muted);
+    }
+
+    .registre-row-next .col-statut {
+      text-align: right;
+      font-size: 0.65rem;
+      color: var(--accent);
+    }
+
+    /* ===== 5. LE STREAM ===== */
+
+    .stream {
+      background: #141414;
+      border-top: 1px solid var(--border-dim);
+      padding: 5rem 2rem;
+    }
+
+    .stream-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stream-header {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--border);
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .stream-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-dim);
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 1rem;
+      font-size: 0.8rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .stream-item:nth-child(2) { opacity: 0.85; }
+    .stream-item:nth-child(3) { opacity: 0.7; }
+    .stream-item:nth-child(4) { opacity: 0.55; }
+    .stream-item:nth-child(5) { opacity: 0.4; }
+
+    .stream-item:first-child .stream-tag {
+      background: rgba(255, 107, 53, 0.15);
+      color: var(--accent);
+    }
+
+    .stream-tag {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2em 0.5em;
+      border-radius: 3px;
+      background: var(--surface);
+      color: var(--text-muted);
+      height: fit-content;
+      align-self: center;
+    }
+
+    .stream-text {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .stream-item:first-child .stream-text {
+      color: var(--text);
+    }
+
+    /* ===== 6. CTA FINAL ===== */
+
+    .cta-final {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 8rem 2rem 10rem;
+      text-align: left;
+    }
+
+    .cta-intro {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-intro strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .cta-form {
+      margin: 2.5rem 0;
+    }
+
+    .cta-input {
+      width: 100%;
+      max-width: 560px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .cta-input::placeholder {
+      color: var(--border);
+    }
+
+    .cta-input:focus {
+      border-color: var(--accent);
+    }
+
+    .cta-button {
+      margin-top: 1rem;
+      background: transparent;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      padding: 0.75rem 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .social-links {
+      margin-top: 3rem;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .social-links a {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--border);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--text-muted);
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE REGISTRE ===== */
+
+    @media (max-width: 600px) {
+      html { font-size: 16px; }
+      .pacte { padding: 3rem 1.5rem; }
+      .deux-colonnes { padding: 4rem 1.5rem; }
+      .registre { padding: 3rem 1.5rem 6rem; }
+      .stream { padding: 4rem 1.5rem; }
+
+      .registre-row,
+      .registre-row-next,
+      .ligne-registry {
+        grid-template-columns: 70px 1fr 80px;
+        gap: 0.5rem;
+      }
+
+      .col-sujet {
+        display: none;
+      }
+
+      .registre-detail {
+        padding: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-<canvas id="dust-canvas"></canvas>
+<!-- ===== 1. LE PACTE ===== -->
+<section class="pacte">
+  <span class="pacte-mark">undust.</span>
 
-<!-- ==================== HERO ==================== -->
-<section class="hero">
-  <span class="mark s">un<strong>dust</strong>.</span>
+  <p class="pacte-text">Ces modes cassés cassent les gens.<br>Les gens cassés ne réparent pas les systèmes.</p>
 
-  <p class="punch s">
-    <strong>Un angle mort de 5,7&nbsp;millions d'euros.</strong>
-    Combien sous votre poussière&nbsp;?
-  </p>
+  <ul class="pacte-conditions">
+    <li><strong>Nommer</strong> le paradigme cassé devant toute l'équipe. Pas en off.</li>
+    <li><strong>Donner accès</strong> au terrain. Pas aux bureaux.</li>
+    <li><strong>Accepter</strong> que le système survive sans toi.</li>
+    <li><strong>Payer</strong> la transformation. Pas le rapport.</li>
+    <li><strong>Assumer</strong> l'inconfort. Ça va secouer.</li>
+  </ul>
 
-  <span class="scroll-hint">&darr;</span>
+  <span class="scroll-indicator">&darr;</span>
 </section>
 
-<!-- ==================== MANIFESTE ==================== -->
-<div class="body">
+<!-- ===== 2. CICATRICES + ACTUELLEMENT ===== -->
+<section class="deux-colonnes">
 
-  <p class="beat-solo s">Ces modes de fonctionnement cassés cassent les gens. Et les gens cassés ne réparent pas les systèmes.</p>
+  <!-- Cicatrices -->
+  <div>
+    <span class="section-title reveal">Cicatrices</span>
+    <ul class="cicatrices-list">
+      <li class="cicatrice reveal" data-target="registre">
+        <div class="cicatrice-name">Valeo</div>
+        <div class="cicatrice-chiffre">1,5M€</div>
+        <div class="cicatrice-desc">Blouses rouges vs blanches. Pas technique.</div>
+      </li>
+      <li class="cicatrice reveal" data-target="registre">
+        <div class="cicatrice-name">Hitachi</div>
+        <div class="cicatrice-chiffre">9 mois → 2 semaines. 2,9M€.</div>
+        <div class="cicatrice-desc">Burnout. Tout mort à mon départ.</div>
+      </li>
+      <li class="cicatrice reveal" data-target="registre">
+        <div class="cicatrice-name">Hall 32</div>
+        <div class="cicatrice-chiffre">CA doublait.</div>
+        <div class="cicatrice-desc">Tout s'effondre au départ du fondateur. Médiocrité préférée.</div>
+      </li>
+    </ul>
+  </div>
 
-  <p class="s">La poussière s'accumule. Les méthodes dorment dans des classeurs. Les experts partent avec tout ce qu'ils savent. Les équipes répètent des gestes sans comprendre pourquoi. C'est classé en non-sujet.</p>
+  <!-- Actuellement -->
+  <div>
+    <span class="section-title reveal">Actuellement</span>
+    <ul class="actuellement-list">
+      <li class="actuellement-item reveal">
+        <div class="actuellement-name">EC²R</div>
+        <div class="actuellement-desc">Méthode de mobilisation collective. Numérisée. Mentor IA.</div>
+        <a href="https://ec2r-conseil.fr" target="_blank" rel="noopener" class="actuellement-link">&rarr; ec2r-conseil.fr</a>
+      </li>
+      <li class="actuellement-item reveal">
+        <div class="actuellement-name">TRACE7</div>
+        <div class="actuellement-desc">Ingénierie de fiabilité. Traçabilité bi-directionnelle.</div>
+        <span class="en-construction">&rarr; en construction</span>
+      </li>
+      <li class="actuellement-item reveal">
+        <div class="actuellement-name">Fractal7</div>
+        <div class="actuellement-desc">Agents IA, mémoire, dispatch autonome.</div>
+        <span class="en-construction">&rarr; en construction</span>
+      </li>
+      <li class="actuellement-item reveal">
+        <div class="actuellement-name">Forge7</div>
+        <div class="actuellement-desc">IA appliquée à l'ingénierie. Dataset structuré.</div>
+        <span class="en-construction">&rarr; en construction</span>
+      </li>
+    </ul>
+  </div>
 
-  <span class="sep s"></span>
+</section>
 
-  <!-- LA CONVICTION -->
-  <h2 class="s">La conviction</h2>
+<!-- ===== 3. TRANSITION PULSATION ===== -->
+<section class="transition-pulse">
+  <div class="ligne-registry ligne-live reveal">
+    <span class="col-date">2024-2026</span>
+    <span class="col-nom">EC²R</span>
+    <span class="col-sujet">Plateforme Rails complète</span>
+    <span class="col-statut statut-deploye">Déployé</span>
+  </div>
+  <div class="ligne-registry ligne-live reveal" style="animation-delay: 0.5s">
+    <span class="col-date">2024-2026</span>
+    <span class="col-nom">EC²R</span>
+    <span class="col-sujet">Baromètre 6 énergies</span>
+    <span class="col-statut statut-en-cours">En cours</span>
+  </div>
+  <div class="ligne-registry ligne-live reveal" style="animation-delay: 1s">
+    <span class="col-date">2024-2026</span>
+    <span class="col-nom">EC²R</span>
+    <span class="col-sujet">Mentor IA socratique</span>
+    <span class="col-statut statut-en-cours">En cours</span>
+  </div>
+  <div class="ligne-registry ligne-live reveal" style="animation-delay: 1.5s">
+    <span class="col-date">2025-2026</span>
+    <span class="col-nom">TRACE7</span>
+    <span class="col-sujet">Cotation bi-directionnelle</span>
+    <span class="col-statut statut-en-cours">En construction</span>
+  </div>
+  <div class="ligne-registry ligne-past reveal" style="transition-delay: 0.1s">
+    <span class="col-date">2019-2024</span>
+    <span class="col-nom">Hall 32</span>
+    <span class="col-sujet">Méthodologie agile hardware</span>
+    <span class="col-statut statut-mort">Mort</span>
+  </div>
+</section>
 
-  <p class="lead s">Chaque personne mérite un travail qui l'élève, pas qui l'écrase.</p>
+<!-- ===== 4. LE REGISTRE ===== -->
+<section class="registre" id="registre">
+  <span class="registre-header reveal">Le registre</span>
 
-  <p class="s">Il y a des gens qui savent, qui font, qui font bien, qui se donnent du mal. Des irréductibles qui résistent dans des systèmes qui les étouffent. Ils n'ont pas besoin qu'on leur explique quoi faire. Ils ont besoin qu'on leur donne un truc qui les libère.</p>
+  <div class="registre-table">
 
-  <span class="sep s"></span>
+    <!-- TRACE7 -->
+    <div class="registre-row reveal" data-detail="detail-trace7">
+      <span class="col-date">2025-2026</span>
+      <span class="col-nom">TRACE7</span>
+      <span class="col-sujet">Cotation bi-directionnelle</span>
+      <span class="col-statut statut-en-cours">En construction</span>
+    </div>
+    <div class="registre-detail" id="detail-trace7">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>Fiabilité = inspecter après coup. Pas prévenir.</div>
+        <div class="detail-item"><strong>Résistance</strong>Ingénieurs terre/btp peu habitués à la traçabilité numérique.</div>
+        <div class="detail-item"><strong>Système construit</strong>Trace7 : plateforme de traçabilité bi-directionnelle intention → cotation.</div>
+        <div class="detail-item"><strong>Résultat</strong>Prototype validé mars 2026. En cours d'industrialisation.</div>
+        <div class="detail-item"><strong>Prix</strong>Co-développement avec Gilles Glémarec.</div>
+        <div class="detail-item"><strong>Survie</strong>En cours.</div>
+      </div>
+    </div>
 
-  <!-- LE GESTE -->
-  <h2 class="s">Le geste</h2>
+    <!-- EC2R Mentor IA -->
+    <div class="registre-row reveal" data-detail="detail-ec2r-mentor">
+      <span class="col-date">2024-2026</span>
+      <span class="col-nom">EC²R</span>
+      <span class="col-sujet">Mentor IA socratique</span>
+      <span class="col-statut statut-en-cours">En cours</span>
+    </div>
+    <div class="registre-detail" id="detail-ec2r-mentor">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les méthodes de mobilisation collective se transmettent mal. Le manque de temps tue l'appropriation.</div>
+        <div class="detail-item"><strong>Résistance</strong>Les animateurs refusent un mentor qui ne les remplace pas.</div>
+        <div class="detail-item"><strong>Système construit</strong>Mentor IA EC²R : agent socratique qui pose les bonnes questions sans donner les réponses.</div>
+        <div class="detail-item"><strong>Résultat</strong>Prototypé avec Stéphane Flahaut. 47 concepts mappés.</div>
+        <div class="detail-item"><strong>Prix</strong>6 mois de co-développement.</div>
+        <div class="detail-item"><strong>Survie</strong>En cours. Voxtral TTS intégré.</div>
+      </div>
+    </div>
 
-  <p class="s">Je détecte les paradigmes cassés. Je trouve les gens qui se battent à l'intérieur. Et je construis ce qui manque pour que ça bouge&thinsp;: les outils, les méthodes, les plateformes.</p>
+    <!-- EC2R Barometre -->
+    <div class="registre-row reveal" data-detail="detail-ec2r-barometre">
+      <span class="col-date">2024-2026</span>
+      <span class="col-nom">EC²R</span>
+      <span class="col-sujet">Baromètre 6 énergies</span>
+      <span class="col-statut statut-en-cours">En cours</span>
+    </div>
+    <div class="registre-detail" id="detail-ec2r-barometre">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les能量的 passent inaperçues dans les équipes. Pas d'outil de mesure.</div>
+        <div class="detail-item"><strong>Résistance</strong>Les organisations craignent le diagnostic.</div>
+        <div class="detail-item"><strong>Système construit</strong>Baromètre EC²R : instrument de mesure des 6 énergies collectives.</div>
+        <div class="detail-item"><strong>Résultat</strong>Intégré à la plateforme EC²R.</div>
+        <div class="detail-item"><strong>Prix</strong>Co-développement EC²R.</div>
+        <div class="detail-item"><strong>Survie</strong>En cours.</div>
+      </div>
+    </div>
 
-  <p class="neg s">
-    <strong>Pas du conseil.</strong> Pas de slides. Pas de formation.<br>
-    Du code. Des méthodes. Des choses qui tournent.
+    <!-- EC2R Plateforme Rails -->
+    <div class="registre-row reveal" data-detail="detail-ec2r-rails">
+      <span class="col-date">2024-2026</span>
+      <span class="col-nom">EC²R</span>
+      <span class="col-sujet">Plateforme Rails complète</span>
+      <span class="col-statut statut-deploye">Déployé</span>
+    </div>
+    <div class="registre-detail" id="detail-ec2r-rails">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les méthodes collectives existent sur papier. Elles ne "tournent" nulle part.</div>
+        <div class="detail-item"><strong>Résistance</strong>Stéphane a fait 2 tentatives de numérisation avant moi.</div>
+        <div class="detail-item"><strong>Système construit</strong>Plateforme EC²R complète sur Rails. Artefacts, sessions, agents IA, dispatch.</div>
+        <div class="detail-item"><strong>Résultat</strong>Déployée. Utilisée par les animateurs EC²R.</div>
+        <div class="detail-item"><strong>Prix</strong>18 mois de développement.</div>
+        <div class="detail-item"><strong>Survie</strong>Déployée. Auto-hébergée.</div>
+      </div>
+    </div>
+
+    <!-- Fractal -->
+    <div class="registre-row reveal" data-detail="detail-fractal">
+      <span class="col-date">2024-2026</span>
+      <span class="col-nom">Fractal</span>
+      <span class="col-sujet">Agents autonomes multi-domaine</span>
+      <span class="col-statut statut-deploye">Actif</span>
+    </div>
+    <div class="registre-detail" id="detail-fractal">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les agents IA sont bons pour une tâche. Ils n'ont pas de mémoire ni de contexte inter-sessions.</div>
+        <div class="detail-item"><strong>Résistance</strong>La paranoïa vis-à-vis des IA (données, vendor lock-in).</div>
+        <div class="detail-item"><strong>Système construit</strong>Fractal : plateforme d'agents IA avec mémoire persistante, dispatch, skills, hooks.</div>
+        <div class="detail-item"><strong>Résultat</strong>Actif sur 2 machines (ZB + EQ). 23+ actions en cours.</div>
+        <div class="detail-item"><strong>Prix</strong>9 mois de développement.</div>
+        <div class="detail-item"><strong>Survie</strong>Auto-hébergé. Open source à venir.</div>
+      </div>
+    </div>
+
+    <!-- Hall 32 Methodologie -->
+    <div class="registre-row reveal" data-detail="detail-hall32-meth">
+      <span class="col-date">2019-2024</span>
+      <span class="col-nom">Hall 32</span>
+      <span class="col-sujet">Méthodologie agile hardware</span>
+      <span class="col-statut statut-mort">Mort</span>
+    </div>
+    <div class="registre-detail" id="detail-hall32-meth">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les методологии agiles sont conçues pour le software. Le hardware a des contraintes physiques incompressibles.</div>
+        <div class="detail-item"><strong>Résistance</strong>Le fondateur refusait de formaliser. "On fait, on ne documente pas."</div>
+        <div class="detail-item"><strong>Système construit</strong>Lab de prototypage rapide. CA x2/an pendant 4 ans.</div>
+        <div class="detail-item"><strong>Résultat</strong>CA doublait. Tout s'effondre à mon départ.</div>
+        <div class="detail-item"><strong>Prix</strong>4 ans sur place.</div>
+        <div class="detail-item"><strong>Survie</strong>Mort. Hall 32 a fermé.</div>
+      </div>
+    </div>
+
+    <!-- Hall 32 Lab -->
+    <div class="registre-row reveal" data-detail="detail-hall32-lab">
+      <span class="col-date">2019-2024</span>
+      <span class="col-nom">Hall 32</span>
+      <span class="col-sujet">Lab prototypage rapide</span>
+      <span class="col-statut statut-mort">Mort</span>
+    </div>
+    <div class="registre-detail" id="detail-hall32-lab">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>Le lab dormait dans un hangar. Aucun accès pour les équipes terrain.</div>
+        <div class="detail-item"><strong>Résistance</strong>Les équipes BE ne venaient pas. Pas le temps, pas le droit.</div>
+        <div class="detail-item"><strong>Système construit</strong>Lab de prototypage rapide. CA x2/an pendant 4 ans.</div>
+        <div class="detail-item"><strong>Résultat</strong>Disperse. Le fondateur a pris leLab chez lui.</div>
+        <div class="detail-item"><strong>Prix</strong>Équipement, formation.</div>
+        <div class="detail-item"><strong>Survie</strong>Mort.</div>
+      </div>
+    </div>
+
+    <!-- Hitachi CAO -->
+    <div class="registre-row reveal" data-detail="detail-hitachi-cao">
+      <span class="col-date">2013-2019</span>
+      <span class="col-nom">Hitachi</span>
+      <span class="col-sujet">CAO 3D paramétrique</span>
+      <span class="col-statut statut-mort">Mort à mon départ</span>
+    </div>
+    <div class="registre-detail" id="detail-hitachi-cao">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>Chaque ingénieur avait sa propre méthode. Pas de standard. Pas de partage.</div>
+        <div class="detail-item"><strong>Résistance</strong>Les seniors craignaient de perdre leur avantage compétitif.</div>
+        <div class="detail-item"><strong>Système construit</strong>CAO 3D paramétrique avec templates partagés.</div>
+        <div class="detail-item"><strong>Résultat</strong>Déployé. Utilisé 2 ans. Mort à mon départ.</div>
+        <div class="detail-item"><strong>Prix</strong>9 mois de conception.</div>
+        <div class="detail-item"><strong>Survie</strong>Mort à mon départ.</div>
+      </div>
+    </div>
+
+    <!-- Hitachi Automation -->
+    <div class="registre-row reveal" data-detail="detail-hitachi-auto">
+      <span class="col-date">2013-2019</span>
+      <span class="col-nom">Hitachi</span>
+      <span class="col-sujet">Automatisation conception</span>
+      <span class="col-statut statut-mort">Mort à mon départ</span>
+    </div>
+    <div class="registre-detail" id="detail-hitachi-auto">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les tâches répétitives étaient faites manuellement. Burnout des ingénieurs.</div>
+        <div class="detail-item"><strong>Résistance</strong>Management opposant : "ça va remplacer des postes."</div>
+        <div class="detail-item"><strong>Système construit</strong>Automatisation de la conception : de 9 mois à 2 semaines.</div>
+        <div class="detail-item"><strong>Résultat</strong>2,9M€ économisés. Burnout en prime (le mien).</div>
+        <div class="detail-item"><strong>Prix</strong>Mon santé mentale. 2 ans de reconstruction.</div>
+        <div class="detail-item"><strong>Survie</strong>Mort à mon départ.</div>
+      </div>
+    </div>
+
+    <!-- Hitachi 3D -->
+    <div class="registre-row reveal" data-detail="detail-hitachi-3d">
+      <span class="col-date">2013-2019</span>
+      <span class="col-nom">Hitachi</span>
+      <span class="col-sujet">Impression 3D atelier</span>
+      <span class="col-statut statut-mort">Adopté atelier, rejeté BE</span>
+    </div>
+    <div class="registre-detail" id="detail-hitachi-3d">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>L'atelier et le BE ne parlaient pas. Le BE dessinait, l'atelier exécutait.</div>
+        <div class="detail-item"><strong>Résistance</strong>Le BE refusait l'outil. "C'est pour les maquettistes."</div>
+        <div class="detail-item"><strong>Système construit</strong>Impression 3D à l'atelier.</div>
+        <div class="detail-item"><strong>Résultat</strong>Adoptée par l'atelier. Rejetée par le BE.</div>
+        <div class="detail-item"><strong>Prix</strong>Machine + formation atelier.</div>
+        <div class="detail-item"><strong>Survie</strong>Adopté atelier, rejeté BE.</div>
+      </div>
+    </div>
+
+    <!-- Valeo -->
+    <div class="registre-row reveal" data-detail="detail-valeo">
+      <span class="col-date">2010-2013</span>
+      <span class="col-nom">Valeo</span>
+      <span class="col-sujet">Système qualité transversal</span>
+      <span class="col-statut statut-mort">?</span>
+    </div>
+    <div class="registre-detail" id="detail-valeo">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les blouses rouges (production) ne parlaient pas aux blanches (bureau). Le problème n'était pas technique.</div>
+        <div class="detail-item"><strong>Résistance</strong>Hiérarchie cloisonnée. Chaque chef de ligne protégeait son pré-carré.</div>
+        <div class="detail-item"><strong>Système construit</strong>Système qualité transversal.</div>
+        <div class="detail-item"><strong>Résultat</strong>1,5M€ économisés. Premier signal fort.</div>
+        <div class="detail-item"><strong>Prix</strong>3 ans.</div>
+        <div class="detail-item"><strong>Survie</strong>Inconnu.</div>
+      </div>
+    </div>
+
+    <!-- ??? Ton projet -->
+    <div class="registre-row-next">
+      <span class="col-date">???</span>
+      <span class="col-nom">Ton projet</span>
+      <span class="col-sujet">???</span>
+      <span class="col-statut">Prochaine ligne</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 5. LE STREAM ===== -->
+<section class="stream">
+  <div class="stream-inner">
+    <span class="stream-header">Stream</span>
+
+    <div class="stream-item reveal">
+      <span class="stream-tag">Live</span>
+      <span class="stream-text">Nouveau paradigme détecté. Domaine : ingénierie fiabilité.</span>
+    </div>
+
+    <div class="stream-item reveal">
+      <span class="stream-tag">7j</span>
+      <span class="stream-text">undust.co réimaginé. Nouvelle structure. On recommence.</span>
+    </div>
+
+    <div class="stream-item reveal">
+      <span class="stream-tag">14j</span>
+      <span class="stream-text">EC²R : méthode numérisée. 47 concepts mappés.</span>
+    </div>
+
+    <div class="stream-item reveal">
+      <span class="stream-tag">30j</span>
+      <span class="stream-text">TRACE7 : premier prototype cotation. Ça tient.</span>
+    </div>
+
+    <div class="stream-item reveal">
+      <span class="stream-tag">60j</span>
+      <span class="stream-text">Hall 32 : 2 ans après. Confirmé : tout mort.</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 6. CTA FINAL ===== -->
+<section class="cta-final">
+  <p class="cta-intro reveal">
+    Tu regardes le chantier.<br>
+    Si tu veux entrer dedans :
   </p>
 
-  <p class="beat s">Du dépoussiérage.</p>
+  <form class="cta-form reveal" action="https://formspree.io/f/undust" method="POST">
+    <input
+      type="text"
+      name="message"
+      class="cta-input"
+      placeholder="Écris ici ce qui est cassé chez toi"
+      autocomplete="off"
+    >
+    <button type="submit" class="cta-button">Ajouter au registre</button>
+  </form>
 
-  <!-- LE PIVOT -->
-  <div class="pivot s">
-    <p>On trouve des experts qui ont une méthode qui marche.</p>
-    <p>On construit le système qui fait que ça marche sans eux.</p>
-    <p class="pivot-dim">Code, méthodes, IA. Pas de slides.</p>
+  <div class="social-links reveal">
+    <a href="https://linkedin.com/in/lucletoffe" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/lucletoffe" target="_blank" rel="noopener">GitHub</a>
+    <a href="mailto:luc@undust.co">Email</a>
   </div>
-
-  <span class="sep s"></span>
-
-  <!-- SIGNAUX -->
-  <h2 class="s">Signaux</h2>
-
-  <div class="signals s">
-    <div class="signal">
-      <span class="signal-num">01.</span>
-      <span class="signal-text">Les 5,7M&euro; étaient un non-sujet. Personne ne les avait commandés.</span>
-    </div>
-    <div class="signal">
-      <span class="signal-num">02.</span>
-      <span class="signal-text">Un expert sans système, c'est une méthode qui meurt avec lui.</span>
-    </div>
-    <div class="signal">
-      <span class="signal-num">03.</span>
-      <span class="signal-text">Le terrain invente mieux que le bureau. Toujours.</span>
-    </div>
-    <div class="signal">
-      <span class="signal-num">04.</span>
-      <span class="signal-text">Un refus d'attendre. On construit ce qui manque.</span>
-    </div>
-    <div class="signal">
-      <span class="signal-num">05.</span>
-      <span class="signal-text">Les blouses rouges ne parlaient pas aux blanches. Le problème n'était pas technique.</span>
-    </div>
-    <div class="signal">
-      <span class="signal-num">06.</span>
-      <span class="signal-text">De 9 mois à 2 semaines. Le même geste, des terrains différents.</span>
-    </div>
-    <div class="signal">
-      <span class="signal-num">07.</span>
-      <span class="signal-text">La poussière s'accumule parce que tout le monde s'en accommode.</span>
-    </div>
-  </div>
-
-  <span class="sep s"></span>
-
-  <!-- CHANTIERS -->
-  <h2 class="s">Chantiers</h2>
-
-  <div class="kanban s">
-
-    <!-- Colonne gauche : passes (scrollable au hover) -->
-    <div class="kanban-col kanban-col-past">
-      <span class="kanban-label">Passés</span>
-
-      <div class="chantier">
-        <span class="chantier-name">Valeo</span>
-        <p>1,5M&euro; économisés. Les blouses rouges ne parlaient pas aux blanches.</p>
-      </div>
-
-      <div class="chantier">
-        <span class="chantier-name">Hitachi Rail</span>
-        <p>De 9 mois à 2 semaines de conception. 2,9M&euro;. Burnout en prime.</p>
-      </div>
-
-      <div class="chantier">
-        <span class="chantier-name">Hall&thinsp;32</span>
-        <p>Un lab d'innovation. CA qui doublait chaque année. Tout s'effondre au départ du fondateur.</p>
-      </div>
-
-    </div>
-
-    <!-- Colonne droite : en cours (fixe) -->
-    <div class="kanban-col kanban-col-now">
-      <span class="kanban-label">En cours</span>
-
-      <div class="chantier">
-        <span class="chantier-name">EC&sup2;R</span>
-        <span class="chantier-with">avec Stéphane Flahaut</span>
-        <p>Méthode de mobilisation des énergies collectives. Numérisée. Mentor IA, plateforme complète.</p>
-        <a href="https://ec2r-conseil.fr" target="_blank" rel="noopener" class="chantier-link">&rarr; ec2r-conseil.fr</a>
-      </div>
-
-      <div class="chantier">
-        <span class="chantier-name">TRACE7</span>
-        <span class="chantier-with">avec Gilles Glémarec</span>
-        <p>Ingénierie de fiabilité pour sitesindustries. Analyse predictive, maintenance, coordination terrain.</p>
-        <span class="chantier-soon">&rarr; en construction</span>
-      </div>
-
-    </div>
-
-  </div>
-
-  <span class="sep s"></span>
-
-  <!-- QUI -->
-  <h2 class="s">Qui</h2>
-
-  <p class="who s"><strong>Luc Létoffé.</strong> Ingénieur de formation. Quinze ans à transformer des équipes techniques depuis l'intérieur. Aujourd'hui indépendant, je construis les outils et les systèmes que j'aurais voulu trouver.</p>
-
-  <!-- CONTACT -->
-  <div class="contact s">
-    <p class="cta">Vous avez une méthode qui marche.<br>Mais elle ne tient que par vous.</p>
-    <p class="cta-sub">On peut construire le système qui la rend irréversible.</p>
-    <p class="cta-direct">Un expert. Une méthode qui tient. Un système qui survit au départ.</p>
-    <a id="email"></a>
-    <div class="social">
-      <a href="https://linkedin.com/in/lucletoffe" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/lucletoffe" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://youtube.com/@lucletoffe" target="_blank" rel="noopener">YouTube</a>
-    </div>
-  </div>
-
-</div>
+</section>
 
 <script>
 (function() {
   'use strict';
 
-  // ── Email obfuscation ──
-  var e = document.getElementById('email');
-  var a = 'luc', b = 'undust.co';
-  e.href = 'mai' + 'lto:' + a + '@' + b;
-  e.textContent = a + '@' + b;
-
-  // ── Text splitting ──
-  function splitChars(el) {
-    var idx = 0;
-    function walk(node, parent) {
-      if (node.nodeType === 3) {
-        var t = node.textContent;
-        var f = document.createDocumentFragment();
-        for (var i = 0; i < t.length; i++) {
-          var s = document.createElement('span');
-          s.textContent = t[i];
-          s.className = 'char';
-          s.style.setProperty('--i', idx);
-          s.style.setProperty('--rx', (Math.random() - 0.5) * 2);
-          s.style.setProperty('--ry', (Math.random() - 0.5) * 2);
-          idx++;
-          f.appendChild(s);
-        }
-        parent.replaceChild(f, node);
-      } else if (node.nodeType === 1) {
-        Array.prototype.slice.call(node.childNodes).forEach(function(c) {
-          walk(c, node);
-        });
-      }
-    }
-    Array.prototype.slice.call(el.childNodes).forEach(function(c) {
-      walk(c, el);
-    });
-  }
-
-  // Hero mark: scatter → assemble
-  var mark = document.querySelector('.mark');
-  if (mark) splitChars(mark);
-
-  // Hover scatter on titles, key phrases, beat elements
-  document.querySelectorAll('.beat, .beat-solo, h2, .lead, .cta, .cta-sub, .cta-direct, .neg, .pivot p').forEach(function(el) {
-    splitChars(el);
-    el.classList.add('scatter-hover');
-  });
-
   // ── Scroll reveal ──
-  var revealEls = document.querySelectorAll('.s');
+  var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
@@ -851,112 +1004,40 @@
           obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
     revealEls.forEach(function(el) { obs.observe(el); });
   } else {
     revealEls.forEach(function(el) { el.classList.add('visible'); });
   }
 
-  setTimeout(function() {
-    document.querySelectorAll('.hero .s').forEach(function(el) {
-      el.classList.add('visible');
-    });
-  }, 100);
+  // ── Registre expand/collapse ──
+  var rows = document.querySelectorAll('.registre-row[data-detail]');
+  rows.forEach(function(row) {
+    row.addEventListener('click', function() {
+      var detailId = row.getAttribute('data-detail');
+      var detail = document.getElementById(detailId);
+      if (!detail) return;
 
-  // ── Dust particles (canvas) ──
-  var canvas = document.getElementById('dust-canvas');
-  if (canvas && canvas.getContext) {
-    var ctx = canvas.getContext('2d');
-    var mX = -1000, mY = -1000;
-    var N = window.innerWidth < 600 ? 30 : 65;
-    var particles = [];
+      var isOpen = detail.classList.contains('open');
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
+      // Close all
+      document.querySelectorAll('.registre-detail.open').forEach(function(d) {
+        d.classList.remove('open');
+      });
 
-    function mkP() {
-      return {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 2 + 0.4,
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: (Math.random() - 0.5) * 0.14 - 0.03,
-        a: Math.random() * 0.3 + 0.05,
-        ph: Math.random() * Math.PI * 2,
-        c: Math.random() > 0.5 ? '196,168,130' : '107,101,96'
-      };
-    }
-
-    resize();
-    for (var i = 0; i < N; i++) particles.push(mkP());
-
-    (function loop() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      var t = Date.now();
-      for (var j = 0; j < particles.length; j++) {
-        var p = particles[j];
-        // Mouse repulsion
-        var dx = p.x - mX, dy = p.y - mY;
-        var d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 100 && d > 0) {
-          var f = (100 - d) / 100 * 0.5;
-          p.x += dx / d * f;
-          p.y += dy / d * f;
-        }
-        // Organic drift
-        p.x += p.vx + Math.sin(t * 0.0005 + p.ph) * 0.08;
-        p.y += p.vy + Math.cos(t * 0.0004 + p.ph) * 0.06;
-        // Wrap
-        if (p.x < -5) p.x = canvas.width + 5;
-        if (p.x > canvas.width + 5) p.x = -5;
-        if (p.y < -5) p.y = canvas.height + 5;
-        if (p.y > canvas.height + 5) p.y = -5;
-        // Draw with opacity pulse
-        var ao = p.a * (0.7 + 0.3 * Math.sin(t * 0.001 + p.ph * 3));
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, 6.283);
-        ctx.fillStyle = 'rgba(' + p.c + ',' + ao + ')';
-        ctx.fill();
+      // Toggle this one
+      if (!isOpen) {
+        detail.classList.add('open');
+        detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
-      requestAnimationFrame(loop);
-    })();
+    });
+  });
 
-    window.addEventListener('resize', resize);
-    document.addEventListener('mousemove', function(ev) { mX = ev.clientX; mY = ev.clientY; });
-    document.addEventListener('mouseleave', function() { mX = mY = -1000; });
-    document.addEventListener('touchmove', function(ev) {
-      if (ev.touches.length) { mX = ev.touches[0].clientX; mY = ev.touches[0].clientY; }
-    }, { passive: true });
-    document.addEventListener('touchend', function() { mX = mY = -1000; });
-  }
-
-  // ── Dust puffs (micro-interactions) ──
-  function puff(x, y, n) {
-    for (var i = 0; i < n; i++) {
-      (function() {
-        var el = document.createElement('div');
-        el.className = 'dust-puff';
-        var angle = Math.random() * 6.283;
-        var dist = Math.random() * 30 + 12;
-        el.style.left = x + 'px';
-        el.style.top = y + 'px';
-        el.style.setProperty('--dx', (Math.cos(angle) * dist) + 'px');
-        el.style.setProperty('--dy', (Math.sin(angle) * dist - 12) + 'px');
-        el.style.setProperty('--s', (Math.random() * 2.5 + 1) + 'px');
-        el.style.animationDelay = (Math.random() * 0.1) + 's';
-        document.body.appendChild(el);
-        setTimeout(function() { el.remove(); }, 1100);
-      })();
-    }
-  }
-
-  document.querySelectorAll('h2, .lead, .neg, .who, .beat, .beat-solo, .contact a, .social a, .cta, .cta-sub, .punch, .sep, .signal, .chantier, .chantier-name, .chantier-link, .kanban-label, .pivot').forEach(function(el) {
-    el.addEventListener('mouseenter', function() {
-      var r = el.getBoundingClientRect();
-      var n = r.width > 400 ? 12 : 8;
-      puff(r.left + r.width / 2, r.top + r.height / 2, n);
+  // ── Cicatrice click → smooth scroll to registre ──
+  document.querySelectorAll('.cicatrice[data-target]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var target = document.getElementById('registre');
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
   });
 
