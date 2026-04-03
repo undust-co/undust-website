@@ -1040,26 +1040,26 @@
   <ul class="cta-segments reveal">
     <li>
       <span class="cta-label">Surqualité / traçabilité ingénierie</span>
-      <a href="mailto:luc@undust.co?subject=Trace7%20—%20traçabilité%20ingénierie">&rarr; Conversation Trace7</a>
+      <a href="#" data-u="luc" data-d="undust.co" data-s="Trace7%20—%20traçabilité%20ingénierie" class="obf-mail">&rarr; Conversation Trace7</a>
     </li>
     <li>
       <span class="cta-label">Méthode collective à numériser</span>
-      <a href="mailto:luc@undust.co?subject=EC2R%20—%20méthode%20collective">&rarr; Conversation EC²R</a>
+      <a href="#" data-u="luc" data-d="undust.co" data-s="EC2R%20—%20méthode%20collective" class="obf-mail">&rarr; Conversation EC²R</a>
     </li>
     <li>
       <span class="cta-label">Audit de conformité qui approche</span>
-      <a href="mailto:luc@undust.co?subject=Conformité%20—%20certification%20normative">&rarr; Conversation conformité</a>
+      <a href="#" data-u="luc" data-d="undust.co" data-s="Conformité%20—%20certification%20normative" class="obf-mail">&rarr; Conversation conformité</a>
     </li>
     <li>
       <span class="cta-label">Autre chose</span>
-      <a href="mailto:luc@undust.co?subject=undust.co%20—%20contact">&rarr; luc@undust.co</a>
+      <a href="#" data-u="luc" data-d="undust.co" data-s="undust.co%20—%20contact" class="obf-mail">&rarr; contact</a>
     </li>
   </ul>
 
   <div class="social-links reveal">
     <a href="https://linkedin.com/in/lucletoffe" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/lucletoffe" target="_blank" rel="noopener">GitHub</a>
-    <a href="mailto:luc@undust.co">Email</a>
+    <a href="#" data-u="luc" data-d="undust.co" class="obf-mail">Email</a>
   </div>
 </section>
 
@@ -1101,6 +1101,19 @@
         detail.classList.add('open');
         detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
+    });
+  });
+
+
+  // Email obfuscation
+  document.querySelectorAll('.obf-mail').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      var addr = el.getAttribute('data-u') + '@' + el.getAttribute('data-d');
+      var subj = el.getAttribute('data-s');
+      var href = 'mail' + 'to:' + addr;
+      if (subj) href += '?subject=' + subj;
+      window.location.href = href;
     });
   });
 
