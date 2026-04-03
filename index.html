@@ -125,7 +125,7 @@
 
     .impact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(5, 1fr);
       gap: 2rem;
     }
 
@@ -155,6 +155,7 @@
     }
 
     @media (max-width: 600px) {
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
       .impact-number { font-size: 1.4rem; }
     }
 
@@ -619,9 +620,9 @@
         <div class="impact-context">Certification par IA supervisée vs prestation classique</div>
       </div>
       <div class="impact-card">
-        <div class="impact-number">144h</div>
-        <div class="impact-label">d'audio capturé et structuré</div>
-        <div class="impact-context">x5 temps réel — 8 500+ transcriptions, 1,2M mots</div>
+        <div class="impact-number">182h/m</div>
+        <div class="impact-label">de frappe économisées</div>
+        <div class="impact-context">71h de dictée, 3.6x plus rapide que taper</div>
       </div>
     </div>
   </div>
