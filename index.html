@@ -734,38 +734,38 @@
       Stream
     </span>
 
-    <div class="stream-item reveal">
-      <span class="stream-tag stream-tag-live">Live</span>
+    <div class="stream-item reveal" data-date="2026-04-01">
+      <span class="stream-tag"></span>
       <span class="stream-text">Conformité normative : premier vertical identifié. Positionnement validé en environnement critique.</span>
     </div>
 
-    <div class="stream-item reveal">
-      <span class="stream-tag stream-tag-recent">3j</span>
+    <div class="stream-item reveal" data-date="2026-03-31">
+      <span class="stream-tag"></span>
       <span class="stream-text">Fractal : extraction en engine lancée. Objectif : noyau de traçabilité décisionnelle réutilisable.</span>
     </div>
 
-    <div class="stream-item reveal">
-      <span class="stream-tag stream-tag-recent">7j</span>
+    <div class="stream-item reveal" data-date="2026-03-27">
+      <span class="stream-tag"></span>
       <span class="stream-text">Trace7 : 3 douleurs terrain validées. 45 modèles métier. "Ne refais pas un PLM — trouve un problème à résoudre."</span>
     </div>
 
-    <div class="stream-item reveal">
-      <span class="stream-tag stream-tag-recent">7j</span>
+    <div class="stream-item reveal" data-date="2026-03-27">
+      <span class="stream-tag"></span>
       <span class="stream-text">Stress-test investisseur deeptech : positionnement challengé. Ça tient.</span>
     </div>
 
-    <div class="stream-item reveal">
-      <span class="stream-tag stream-tag-past">14j</span>
+    <div class="stream-item reveal" data-date="2026-03-20">
+      <span class="stream-tag"></span>
       <span class="stream-text">EC&sup2;R : mentor IA socratique en production. 47 concepts mappés.</span>
     </div>
 
-    <div class="stream-item reveal">
-      <span class="stream-tag stream-tag-past">30j</span>
+    <div class="stream-item reveal" data-date="2026-03-01">
+      <span class="stream-tag"></span>
       <span class="stream-text">Pipeline audio déployé : 9 000+ transcriptions, 182h d'audio traité, 1,3M mots. ~300h de frappe économisées — dicter au lieu de taper, enregistrer et extraire au lieu de rédiger.</span>
     </div>
 
-    <div class="stream-item reveal">
-      <span class="stream-tag stream-tag-past">60j</span>
+    <div class="stream-item reveal" data-date="2024-02-01">
+      <span class="stream-tag"></span>
       <span class="stream-text">Innovation hardware : 2 ans après. Confirmé — la méthode a survécu, l'énergie non.</span>
     </div>
 
@@ -824,6 +824,34 @@
   } else {
     revealEls.forEach(function(el) { el.classList.add('visible'); });
   }
+
+  // Stream: dynamic relative dates
+  document.querySelectorAll('.stream-item[data-date]').forEach(function(item) {
+    var tag = item.querySelector('.stream-tag');
+    var d = new Date(item.getAttribute('data-date'));
+    var now = new Date();
+    var diff = Math.floor((now - d) / 86400000); // days
+
+    var label, cls;
+    if (diff <= 1) {
+      label = 'Live'; cls = 'stream-tag-live';
+    } else if (diff < 30) {
+      label = diff + 'j'; cls = 'stream-tag-recent';
+    } else if (diff < 60) {
+      label = '1m'; cls = 'stream-tag-recent';
+    } else if (diff < 365) {
+      var m = Math.floor(diff / 30);
+      label = m + 'm'; cls = 'stream-tag-past';
+    } else {
+      var y = Math.floor(diff / 365);
+      var rm = Math.floor((diff % 365) / 30);
+      label = y + 'a' + (rm > 0 ? ' ' + rm + 'm' : '');
+      cls = 'stream-tag-past';
+    }
+
+    tag.textContent = label;
+    tag.classList.add(cls);
+  });
 
   // Email obfuscation
   document.querySelectorAll('.obf-mail').forEach(function(el) {
