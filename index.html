@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>undust.</title>
-  <meta name="description" content="On détecte les paradigmes cassés. On construit ce qui manque.">
+  <meta name="description" content="Les décisions non tracées coûtent plus cher que les erreurs techniques. Un moteur. Trois domaines. Tracer le pourquoi.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -35,9 +35,9 @@
       overflow-wrap: break-word;
     }
 
-    /* ===== 1. LE PACTE (viewport entier) ===== */
+    /* ===== 1. LA THESE (viewport entier) ===== */
 
-    .pacte {
+    .these {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -48,7 +48,7 @@
       position: relative;
     }
 
-    .pacte-mark {
+    .these-mark {
       font-size: 1.1rem;
       font-weight: 300;
       color: var(--text-muted);
@@ -56,7 +56,7 @@
       letter-spacing: 0.05em;
     }
 
-    .pacte-text {
+    .these-text {
       font-size: 1.25rem;
       font-weight: 400;
       line-height: 1.65;
@@ -64,30 +64,37 @@
       color: var(--text);
     }
 
-    .pacte-conditions {
+    .these-douleurs {
       list-style: none;
       margin: 2rem 0;
     }
 
-    .pacte-conditions li {
-      font-size: 0.95rem;
+    .these-douleurs li {
+      font-size: 0.9rem;
       line-height: 1.7;
       color: var(--text-muted);
-      padding: 0.4rem 0;
+      padding: 0.5rem 0;
       padding-left: 1.5rem;
       position: relative;
     }
 
-    .pacte-conditions li::before {
+    .these-douleurs li::before {
       content: '—';
       position: absolute;
       left: 0;
       color: var(--accent);
     }
 
-    .pacte-conditions li strong {
+    .these-douleurs li strong {
       color: var(--text);
       font-weight: 500;
+    }
+
+    .these-synthese {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-top: 2rem;
+      letter-spacing: 0.05em;
     }
 
     .scroll-indicator {
@@ -106,23 +113,182 @@
       50% { transform: translateX(-50%) translateY(6px); opacity: 0.7; }
     }
 
-    /* ===== 2. CICATRICES + ACTUELLEMENT ===== */
+    /* ===== 2. TROIS TERRAINS ===== */
 
-    .deux-colonnes {
-      max-width: 1100px;
+    .terrains {
+      max-width: 900px;
       margin: 0 auto;
       padding: 8rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
     }
 
-    @media (max-width: 768px) {
-      .deux-colonnes {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        padding: 5rem 1.5rem;
-      }
+    .terrains-header {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--border);
+      margin-bottom: 3rem;
+      display: block;
+    }
+
+    .terrain-bloc {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .terrain-bloc:first-of-type {
+      border-top: 1px solid var(--border-dim);
+    }
+
+    .terrain-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+    }
+
+    .terrain-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .terrain-domaine {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .terrain-verbatim {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border-dim);
+    }
+
+    .terrain-verbatim-source {
+      font-size: 0.65rem;
+      color: var(--border);
+      font-style: normal;
+      padding-left: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .terrain-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+
+    .terrain-preuve {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .terrain-link {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .terrain-link:hover {
+      color: var(--accent);
+    }
+
+    .en-construction {
+      font-size: 0.7rem;
+      color: var(--border);
+      font-style: italic;
+    }
+
+    .terrains-fil-rouge {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 3rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border-dim);
+      line-height: 1.7;
+    }
+
+    .terrains-fil-rouge em {
+      color: var(--text);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    /* ===== 3. FERROVIAIRE ===== */
+
+    .ferroviaire {
+      background: #141414;
+      border-top: 1px solid var(--border-dim);
+      border-bottom: 1px solid var(--border-dim);
+      padding: 6rem 2rem;
+    }
+
+    .ferroviaire-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .ferroviaire-header {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--border);
+      margin-bottom: 2.5rem;
+      display: block;
+    }
+
+    .ferroviaire-title {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .ferroviaire-specs {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .ferroviaire-specs li {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 0.3rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.7;
+    }
+
+    .ferroviaire-specs li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .ferroviaire-cred {
+      font-size: 0.75rem;
+      color: var(--border);
+      margin-top: 2rem;
+      line-height: 1.7;
+    }
+
+    /* ===== 4. PREUVES PAR L'ECHEC ===== */
+
+    .preuves {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 8rem 2rem;
     }
 
     .section-title {
@@ -135,161 +301,42 @@
       display: block;
     }
 
-    .cicatrices-list {
-      list-style: none;
-    }
-
-    .cicatrice {
-      padding: 1.2rem 0;
+    .preuve-bloc {
+      padding: 1.5rem 0;
       border-bottom: 1px solid var(--border-dim);
-      cursor: pointer;
-      transition: border-color 0.3s ease;
     }
 
-    .cicatrice:first-child {
+    .preuve-bloc:first-of-type {
       border-top: 1px solid var(--border-dim);
     }
 
-    .cicatrice:hover {
-      border-bottom-color: var(--accent);
-    }
-
-    .cicatrice-name {
+    .preuve-name {
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--text);
       margin-bottom: 0.25rem;
     }
 
-    .cicatrice-chiffre {
+    .preuve-chiffre {
       font-size: 0.7rem;
       color: var(--accent);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
     }
 
-    .cicatrice-desc {
-      font-size: 0.75rem;
+    .preuve-desc {
+      font-size: 0.8rem;
       color: var(--text-muted);
-    }
-
-    .actuellement-list {
-      list-style: none;
-    }
-
-    .actuellement-item {
-      padding: 1.2rem 0;
-      border-bottom: 1px solid var(--border-dim);
-    }
-
-    .actuellement-item:first-child {
-      border-top: 1px solid var(--border-dim);
-    }
-
-    .actuellement-name {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 0.25rem;
-    }
-
-    .actuellement-desc {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+      line-height: 1.7;
       margin-bottom: 0.4rem;
     }
 
-    .actuellement-link {
-      font-size: 0.65rem;
+    .preuve-lecon {
+      font-size: 0.75rem;
       color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .actuellement-link:hover {
-      color: var(--accent);
-    }
-
-    .en-construction {
-      font-size: 0.65rem;
-      color: var(--border);
       font-style: italic;
     }
 
-    /* ===== 3. TRANSITION PULSATION ===== */
-
-    .transition-pulse {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 4rem 2rem 6rem;
-    }
-
-    .transition-pulse .ligne-live {
-      animation: pulse 4s ease-in-out infinite;
-    }
-
-    .transition-pulse .ligne-past {
-      opacity: 0.3;
-      filter: blur(1px);
-      transition: opacity 0.6s ease, filter 0.6s ease;
-    }
-
-    .transition-pulse:hover .ligne-past {
-      opacity: 0.7;
-      filter: blur(0);
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 -2px 0 0 transparent; }
-      50% { box-shadow: 0 -3px 0 0 var(--accent); }
-    }
-
-    .ligne-registry {
-      display: grid;
-      grid-template-columns: 100px 1fr 1fr 100px;
-      gap: 1rem;
-      padding: 0.75rem 0.5rem;
-      border-bottom: 1px solid var(--border-dim);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      transition: border-color 0.3s ease;
-    }
-
-    .ligne-registry:hover {
-      border-bottom-color: var(--border);
-    }
-
-    .ligne-registry .col-date {
-      font-size: 0.7rem;
-    }
-
-    .ligne-registry .col-nom {
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .ligne-registry .col-sujet {
-      color: var(--text-muted);
-    }
-
-    .ligne-registry .col-statut {
-      text-align: right;
-      font-size: 0.65rem;
-      letter-spacing: 0.05em;
-    }
-
-    .statut-en-cours {
-      color: var(--accent);
-    }
-
-    .statut-mort {
-      color: var(--border);
-    }
-
-    .statut-deploye {
-      color: #4A7F8A;
-    }
-
-    /* ===== 4. LE REGISTRE ===== */
+    /* ===== 5. LE REGISTRE ===== */
 
     .registre {
       max-width: 900px;
@@ -313,7 +360,7 @@
 
     .registre-row {
       display: grid;
-      grid-template-columns: 100px 1fr 1fr 100px;
+      grid-template-columns: 100px 1fr 1fr 120px;
       gap: 1rem;
       padding: 0.7rem 0.5rem;
       border-bottom: 1px solid var(--border-dim);
@@ -344,7 +391,6 @@
       font-size: 0.65rem;
     }
 
-    /* Detail expand */
     .registre-detail {
       display: none;
       background: var(--surface);
@@ -384,10 +430,9 @@
       margin-bottom: 0.25rem;
     }
 
-    /* Derniere ligne "Ton projet" */
     .registre-row-next {
       display: grid;
-      grid-template-columns: 100px 1fr 1fr 100px;
+      grid-template-columns: 100px 1fr 1fr 120px;
       gap: 1rem;
       padding: 0.7rem 0.5rem;
       border-bottom: 1px solid var(--border-dim);
@@ -417,7 +462,12 @@
       color: var(--accent);
     }
 
-    /* ===== 5. LE STREAM ===== */
+    .statut-en-cours { color: var(--accent); }
+    .statut-mort { color: var(--border); }
+    .statut-deploye { color: #4A7F8A; }
+    .statut-propale { color: #8A6A4A; }
+
+    /* ===== 6. LE STREAM ===== */
 
     .stream {
       background: #141414;
@@ -454,6 +504,8 @@
     .stream-item:nth-child(3) { opacity: 0.7; }
     .stream-item:nth-child(4) { opacity: 0.55; }
     .stream-item:nth-child(5) { opacity: 0.4; }
+    .stream-item:nth-child(6) { opacity: 0.3; }
+    .stream-item:nth-child(7) { opacity: 0.2; }
 
     .stream-item:first-child .stream-tag {
       background: rgba(255, 107, 53, 0.15);
@@ -482,7 +534,7 @@
       color: var(--text);
     }
 
-    /* ===== 6. CTA FINAL ===== */
+    /* ===== 7. CTA FINAL ===== */
 
     .cta-final {
       max-width: 760px;
@@ -495,7 +547,7 @@
       font-size: 1rem;
       font-weight: 300;
       color: var(--text-muted);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
       line-height: 1.7;
     }
 
@@ -504,52 +556,37 @@
       font-weight: 400;
     }
 
-    .cta-form {
-      margin: 2.5rem 0;
+    .cta-segments {
+      list-style: none;
+      margin: 0 0 3rem 0;
     }
 
-    .cta-input {
-      width: 100%;
-      max-width: 560px;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 1rem 1.25rem;
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      font-weight: 300;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.3s ease;
+    .cta-segments li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border-dim);
     }
 
-    .cta-input::placeholder {
-      color: var(--border);
+    .cta-segments li:first-child {
+      border-top: 1px solid var(--border-dim);
     }
 
-    .cta-input:focus {
-      border-color: var(--accent);
+    .cta-segments a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: block;
     }
 
-    .cta-button {
-      margin-top: 1rem;
-      background: transparent;
-      border: 1px solid var(--accent);
-      border-radius: 4px;
-      padding: 0.75rem 2rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+    .cta-segments a:hover {
       color: var(--accent);
-      cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease;
     }
 
-    .cta-button:hover {
-      background: var(--accent);
-      color: var(--bg);
+    .cta-segments .cta-label {
+      font-size: 0.7rem;
+      color: var(--border);
+      display: block;
+      margin-bottom: 0.2rem;
     }
 
     .social-links {
@@ -584,18 +621,19 @@
       transform: translateY(0);
     }
 
-    /* ===== RESPONSIVE REGISTRE ===== */
+    /* ===== RESPONSIVE ===== */
 
     @media (max-width: 600px) {
       html { font-size: 16px; }
-      .pacte { padding: 3rem 1.5rem; }
-      .deux-colonnes { padding: 4rem 1.5rem; }
+      .these { padding: 3rem 1.5rem; }
+      .terrains { padding: 5rem 1.5rem; }
+      .ferroviaire { padding: 4rem 1.5rem; }
+      .preuves { padding: 5rem 1.5rem; }
       .registre { padding: 3rem 1.5rem 6rem; }
       .stream { padding: 4rem 1.5rem; }
 
       .registre-row,
-      .registre-row-next,
-      .ligne-registry {
+      .registre-row-next {
         grid-template-columns: 70px 1fr 80px;
         gap: 0.5rem;
       }
@@ -607,137 +645,163 @@
       .registre-detail {
         padding: 1rem;
       }
+
+      .terrain-header-row {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- ===== 1. LE PACTE ===== -->
-<section class="pacte">
-  <span class="pacte-mark">undust.</span>
+<!-- ===== 1. LA THESE ===== -->
+<section class="these">
+  <span class="these-mark">undust.</span>
 
-  <p class="pacte-text">Ces modes cassés cassent les gens.<br>Les gens cassés ne réparent pas les systèmes.</p>
+  <p class="these-text">Les décisions non tracées coûtent plus cher que les erreurs techniques.</p>
 
-  <ul class="pacte-conditions">
-    <li><strong>Nommer</strong> le paradigme cassé devant toute l'équipe. Pas en off.</li>
-    <li><strong>Donner accès</strong> au terrain. Pas aux bureaux.</li>
-    <li><strong>Accepter</strong> que le système survive sans toi.</li>
-    <li><strong>Payer</strong> la transformation. Pas le rapport.</li>
-    <li><strong>Assumer</strong> l'inconfort. Ça va secouer.</li>
+  <ul class="these-douleurs">
+    <li><strong>La surqualité invisible.</strong> Une poutre chiffrée 170K coûte 250K. Personne ne sait pourquoi la tolérance est là.</li>
+    <li><strong>La mémoire qui part.</strong> L'expert quitte. Le plan reste. Le raisonnement disparaît.</li>
+    <li><strong>Le problème mal posé.</strong> L'ingénieur demande "quelle tolérance ?" au lieu de "quel besoin fonctionnel ?"</li>
+    <li><strong>La méthode qui ne se transmet pas.</strong> Le mentor part. L'équipe régresse. 2 tentatives de numérisation avant la bonne.</li>
+    <li><strong>L'agent sans mémoire.</strong> Chaque session IA repart de zéro. Pas de contexte. Pas de trace.</li>
   </ul>
+
+  <p class="these-synthese">Un moteur. Trois domaines. Tracer le pourquoi.</p>
 
   <span class="scroll-indicator">&darr;</span>
 </section>
 
-<!-- ===== 2. CICATRICES + ACTUELLEMENT ===== -->
-<section class="deux-colonnes">
+<!-- ===== 2. TROIS TERRAINS ===== -->
+<section class="terrains">
+  <span class="terrains-header reveal">Même moteur. Trois terrains.</span>
 
-  <!-- Cicatrices -->
-  <div>
-    <span class="section-title reveal">Cicatrices</span>
-    <ul class="cicatrices-list">
-      <li class="cicatrice reveal" data-target="registre">
-        <div class="cicatrice-name">Valeo</div>
-        <div class="cicatrice-chiffre">1,5M€</div>
-        <div class="cicatrice-desc">Blouses rouges vs blanches. Pas technique.</div>
-      </li>
-      <li class="cicatrice reveal" data-target="registre">
-        <div class="cicatrice-name">Hitachi</div>
-        <div class="cicatrice-chiffre">9 mois → 2 semaines. 2,9M€.</div>
-        <div class="cicatrice-desc">Burnout. Tout mort à mon départ.</div>
-      </li>
-      <li class="cicatrice reveal" data-target="registre">
-        <div class="cicatrice-name">Hall 32</div>
-        <div class="cicatrice-chiffre">CA doublait.</div>
-        <div class="cicatrice-desc">Tout s'effondre au départ du fondateur. Médiocrité préférée.</div>
-      </li>
-    </ul>
+  <!-- TRACE7 -->
+  <div class="terrain-bloc reveal">
+    <div class="terrain-header-row">
+      <span class="terrain-name">TRACE7</span>
+      <span class="terrain-domaine">Ingénierie</span>
+    </div>
+    <p class="terrain-verbatim">"Le jour où tu as une grosse poutre usinée de 12 mètres que tu avais chiffrée 170K et qu'elle coûte 250K, tu dis ça vaut peut-être la peine de passer une heure pour savoir si j'ai pas fait de la surqualité."</p>
+    <p class="terrain-verbatim-source">— Directeur technique, sous-traitance aéronautique</p>
+    <p class="terrain-desc">Trace7 trace le raisonnement du besoin fonctionnel jusqu'à la cote sur le plan. Et te dit quand tu fais de la surqualité.</p>
+    <p class="terrain-preuve">Prototype validé. 5 conversations terrain en cours. Pré-CI le 24 avril.</p>
   </div>
 
-  <!-- Actuellement -->
-  <div>
-    <span class="section-title reveal">Actuellement</span>
-    <ul class="actuellement-list">
-      <li class="actuellement-item reveal">
-        <div class="actuellement-name">EC²R</div>
-        <div class="actuellement-desc">Méthode de mobilisation collective. Numérisée. Mentor IA.</div>
-        <a href="https://ec2r-conseil.fr" target="_blank" rel="noopener" class="actuellement-link">&rarr; ec2r-conseil.fr</a>
-      </li>
-      <li class="actuellement-item reveal">
-        <div class="actuellement-name">TRACE7</div>
-        <div class="actuellement-desc">Ingénierie de fiabilité. Traçabilité bi-directionnelle.</div>
-        <span class="en-construction">&rarr; en construction</span>
-      </li>
-      <li class="actuellement-item reveal">
-        <div class="actuellement-name">Fractal7</div>
-        <div class="actuellement-desc">Agents IA, mémoire, dispatch autonome.</div>
-        <span class="en-construction">&rarr; en construction</span>
-      </li>
-      <li class="actuellement-item reveal">
-        <div class="actuellement-name">Forge7</div>
-        <div class="actuellement-desc">IA appliquée à l'ingénierie. Dataset structuré.</div>
-        <span class="en-construction">&rarr; en construction</span>
-      </li>
-    </ul>
+  <!-- EC2R -->
+  <div class="terrain-bloc reveal">
+    <div class="terrain-header-row">
+      <span class="terrain-name">EC²R</span>
+      <span class="terrain-domaine">Management</span>
+    </div>
+    <p class="terrain-desc">Les méthodes de mobilisation collective existent sur papier. Elles ne "tournent" nulle part. Le manque de temps tue l'appropriation.</p>
+    <p class="terrain-desc">Mentor IA socratique : il pose les bonnes questions sans donner les réponses. 47 concepts mappés. Plateforme déployée.</p>
+    <a href="https://ec2r-conseil.fr" target="_blank" rel="noopener" class="terrain-link">&rarr; ec2r-conseil.fr</a>
+  </div>
+
+  <!-- FRACTAL7 -->
+  <div class="terrain-bloc reveal">
+    <div class="terrain-header-row">
+      <span class="terrain-name">FRACTAL7</span>
+      <span class="terrain-domaine">Intelligence artificielle</span>
+    </div>
+    <p class="terrain-desc">Les agents IA sont bons pour une tâche. Pas de mémoire. Pas de contexte inter-sessions. Pas de trace décisionnelle.</p>
+    <p class="terrain-desc">Rails engine mountable. Mémoire persistante. Dispatch autonome. 2 machines, 170 tables, des actions en cours pendant que tu lis cette page.</p>
+    <span class="en-construction">&rarr; en usage interne. Open source à venir.</span>
+  </div>
+
+  <div class="terrains-fil-rouge reveal">
+    Le même noyau partout : <em>capturer la décision implicite, la structurer, la rendre actionnable.</em>
   </div>
 
 </section>
 
-<!-- ===== 3. TRANSITION PULSATION ===== -->
-<section class="transition-pulse">
-  <div class="ligne-registry ligne-live reveal">
-    <span class="col-date">2024-2026</span>
-    <span class="col-nom">EC²R</span>
-    <span class="col-sujet">Plateforme Rails complète</span>
-    <span class="col-statut statut-deploye">Déployé</span>
-  </div>
-  <div class="ligne-registry ligne-live reveal" style="animation-delay: 0.5s">
-    <span class="col-date">2024-2026</span>
-    <span class="col-nom">EC²R</span>
-    <span class="col-sujet">Baromètre 6 énergies</span>
-    <span class="col-statut statut-en-cours">En cours</span>
-  </div>
-  <div class="ligne-registry ligne-live reveal" style="animation-delay: 1s">
-    <span class="col-date">2024-2026</span>
-    <span class="col-nom">EC²R</span>
-    <span class="col-sujet">Mentor IA socratique</span>
-    <span class="col-statut statut-en-cours">En cours</span>
-  </div>
-  <div class="ligne-registry ligne-live reveal" style="animation-delay: 1.5s">
-    <span class="col-date">2025-2026</span>
-    <span class="col-nom">TRACE7</span>
-    <span class="col-sujet">Cotation bi-directionnelle</span>
-    <span class="col-statut statut-en-cours">En construction</span>
-  </div>
-  <div class="ligne-registry ligne-past reveal" style="transition-delay: 0.1s">
-    <span class="col-date">2019-2024</span>
-    <span class="col-nom">Hall 32</span>
-    <span class="col-sujet">Méthodologie agile hardware</span>
-    <span class="col-statut statut-mort">Mort</span>
+<!-- ===== 3. FERROVIAIRE ===== -->
+<section class="ferroviaire">
+  <div class="ferroviaire-inner">
+    <span class="ferroviaire-header reveal">Conformité ferroviaire</span>
+
+    <p class="ferroviaire-title reveal">Accélérateur de conformité EN 50128 par IA supervisée.</p>
+
+    <ul class="ferroviaire-specs reveal">
+      <li>Le code SIL4 ne sort jamais. L'agent travaille en local.</li>
+      <li>Remédiation des gaps de test et traçabilité 10-20x plus vite qu'une SSII classique.</li>
+      <li>Coût inférieur au recrutement d'un ingénieur pendant 6 mois.</li>
+      <li>La supervision est à distance. Le résultat est livré, pas l'outil.</li>
+    </ul>
+
+    <p class="ferroviaire-cred reveal">6 ans chez Ansaldo STS / Hitachi Rail. Automatisation conception ferroviaire. De 9 mois à 2 semaines. 2,9M€ économisés.</p>
   </div>
 </section>
 
-<!-- ===== 4. LE REGISTRE ===== -->
+<!-- ===== 4. PREUVES PAR L'ECHEC ===== -->
+<section class="preuves">
+  <span class="section-title reveal">Ce que j'ai appris en cassant des choses.</span>
+
+  <div class="preuve-bloc reveal">
+    <div class="preuve-name">Valeo</div>
+    <div class="preuve-chiffre">1,5M€ économisés</div>
+    <p class="preuve-desc">Blouses rouges vs blanches. Le problème n'était pas technique — c'étaient les décisions cloisonnées que personne ne traçait.</p>
+    <p class="preuve-lecon">Premier signal.</p>
+  </div>
+
+  <div class="preuve-bloc reveal">
+    <div class="preuve-name">Hitachi</div>
+    <div class="preuve-chiffre">9 mois → 2 semaines. 2,9M€.</div>
+    <p class="preuve-desc">Automatisation de la conception. Burnout. Tout mort à mon départ.</p>
+    <p class="preuve-lecon">La preuve que tracer le raisonnement est aussi important que le résultat. Sans trace, le système ne survit pas à son créateur.</p>
+  </div>
+
+  <div class="preuve-bloc reveal">
+    <div class="preuve-name">Hall 32</div>
+    <div class="preuve-chiffre">CA x2/an pendant 4 ans. Tout effondré.</div>
+    <p class="preuve-desc">Lab de prototypage rapide. Tout s'effondre au départ du fondateur. Médiocrité préférée à l'inconfort du changement.</p>
+    <p class="preuve-lecon">Sans trace, la méthode meurt avec la personne.</p>
+  </div>
+
+</section>
+
+<!-- ===== 5. LE REGISTRE ===== -->
 <section class="registre" id="registre">
   <span class="registre-header reveal">Le registre</span>
 
   <div class="registre-table">
 
+    <!-- CSEE -->
+    <div class="registre-row reveal" data-detail="detail-csee">
+      <span class="col-date">2026</span>
+      <span class="col-nom">CSEE</span>
+      <span class="col-sujet">Conformité EN 50128 par IA</span>
+      <span class="col-statut statut-propale">Propale en cours</span>
+    </div>
+    <div class="registre-detail" id="detail-csee">
+      <div class="detail-grid">
+        <div class="detail-item"><strong>Paradigme cassé</strong>La conformité SIL4 se fait manuellement. Les SSII facturent 2M€ pour 2-3 ans de travail.</div>
+        <div class="detail-item"><strong>Résistance</strong>Les exigences ne sont pas formalisées. "Pas automatisable" — c'est justement l'angle.</div>
+        <div class="detail-item"><strong>Système construit</strong>Agent IA dédié, sécurisé en local. Le code ne sort jamais. Supervision à distance.</div>
+        <div class="detail-item"><strong>Résultat</strong>Positionnement validé. Premier vertical identifié.</div>
+        <div class="detail-item"><strong>Prix</strong>95-150K€ vs 2M€ prestation classique. Facteur 15-20x.</div>
+        <div class="detail-item"><strong>Survie</strong>En cours. Contact via Ludovic.</div>
+      </div>
+    </div>
+
     <!-- TRACE7 -->
     <div class="registre-row reveal" data-detail="detail-trace7">
       <span class="col-date">2025-2026</span>
       <span class="col-nom">TRACE7</span>
-      <span class="col-sujet">Cotation bi-directionnelle</span>
+      <span class="col-sujet">Traçabilité décisionnelle ingénierie</span>
       <span class="col-statut statut-en-cours">En construction</span>
     </div>
     <div class="registre-detail" id="detail-trace7">
       <div class="detail-grid">
-        <div class="detail-item"><strong>Paradigme cassé</strong>Fiabilité = inspecter après coup. Pas prévenir.</div>
-        <div class="detail-item"><strong>Résistance</strong>Ingénieurs terre/btp peu habitués à la traçabilité numérique.</div>
-        <div class="detail-item"><strong>Système construit</strong>Trace7 : plateforme de traçabilité bi-directionnelle intention → cotation.</div>
-        <div class="detail-item"><strong>Résultat</strong>Prototype validé mars 2026. En cours d'industrialisation.</div>
-        <div class="detail-item"><strong>Prix</strong>Co-développement avec Gilles Glémarec.</div>
-        <div class="detail-item"><strong>Survie</strong>En cours.</div>
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les tolérances sont copiées, pas décidées. Personne ne sait pourquoi cette cote est là.</div>
+        <div class="detail-item"><strong>Résistance</strong>"Ne refais pas un PLM." "Trouve un problème à résoudre." — Feedback terrain direct.</div>
+        <div class="detail-item"><strong>Système construit</strong>Trace7 : du besoin fonctionnel à la cote sur le plan. Détection automatique de surqualité.</div>
+        <div class="detail-item"><strong>Résultat</strong>Prototype validé mars 2026. 3 douleurs concrètes identifiées. Stress-test deeptech passé.</div>
+        <div class="detail-item"><strong>Prix</strong>Co-développement avec Gilles Glémarec + feedback Emmanuel Duc.</div>
+        <div class="detail-item"><strong>Survie</strong>En cours. Pré-CI le 24 avril.</div>
       </div>
     </div>
 
@@ -755,29 +819,11 @@
         <div class="detail-item"><strong>Système construit</strong>Mentor IA EC²R : agent socratique qui pose les bonnes questions sans donner les réponses.</div>
         <div class="detail-item"><strong>Résultat</strong>Prototypé avec Stéphane Flahaut. 47 concepts mappés.</div>
         <div class="detail-item"><strong>Prix</strong>6 mois de co-développement.</div>
-        <div class="detail-item"><strong>Survie</strong>En cours. Voxtral TTS intégré.</div>
-      </div>
-    </div>
-
-    <!-- EC2R Barometre -->
-    <div class="registre-row reveal" data-detail="detail-ec2r-barometre">
-      <span class="col-date">2024-2026</span>
-      <span class="col-nom">EC²R</span>
-      <span class="col-sujet">Baromètre 6 énergies</span>
-      <span class="col-statut statut-en-cours">En cours</span>
-    </div>
-    <div class="registre-detail" id="detail-ec2r-barometre">
-      <div class="detail-grid">
-        <div class="detail-item"><strong>Paradigme cassé</strong>Les能量的 passent inaperçues dans les équipes. Pas d'outil de mesure.</div>
-        <div class="detail-item"><strong>Résistance</strong>Les organisations craignent le diagnostic.</div>
-        <div class="detail-item"><strong>Système construit</strong>Baromètre EC²R : instrument de mesure des 6 énergies collectives.</div>
-        <div class="detail-item"><strong>Résultat</strong>Intégré à la plateforme EC²R.</div>
-        <div class="detail-item"><strong>Prix</strong>Co-développement EC²R.</div>
         <div class="detail-item"><strong>Survie</strong>En cours.</div>
       </div>
     </div>
 
-    <!-- EC2R Plateforme Rails -->
+    <!-- EC2R Plateforme -->
     <div class="registre-row reveal" data-detail="detail-ec2r-rails">
       <span class="col-date">2024-2026</span>
       <span class="col-nom">EC²R</span>
@@ -795,34 +841,34 @@
       </div>
     </div>
 
-    <!-- Fractal -->
-    <div class="registre-row reveal" data-detail="detail-fractal">
+    <!-- Fractal7 -->
+    <div class="registre-row reveal" data-detail="detail-fractal7">
       <span class="col-date">2024-2026</span>
-      <span class="col-nom">Fractal</span>
-      <span class="col-sujet">Agents autonomes multi-domaine</span>
-      <span class="col-statut statut-deploye">Actif</span>
+      <span class="col-nom">Fractal7</span>
+      <span class="col-sujet">Engine IA autonome</span>
+      <span class="col-statut statut-en-cours">En construction</span>
     </div>
-    <div class="registre-detail" id="detail-fractal">
+    <div class="registre-detail" id="detail-fractal7">
       <div class="detail-grid">
-        <div class="detail-item"><strong>Paradigme cassé</strong>Les agents IA sont bons pour une tâche. Ils n'ont pas de mémoire ni de contexte inter-sessions.</div>
-        <div class="detail-item"><strong>Résistance</strong>La paranoïa vis-à-vis des IA (données, vendor lock-in).</div>
-        <div class="detail-item"><strong>Système construit</strong>Fractal : plateforme d'agents IA avec mémoire persistante, dispatch, skills, hooks.</div>
-        <div class="detail-item"><strong>Résultat</strong>Actif sur 2 machines (ZB + EQ). 23+ actions en cours.</div>
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les agents IA n'ont pas de mémoire. Chaque session repart de zéro. Pas de trace décisionnelle.</div>
+        <div class="detail-item"><strong>Résistance</strong>La paranoïa vis-à-vis des IA (données, vendor lock-in, perte de contrôle).</div>
+        <div class="detail-item"><strong>Système construit</strong>Rails engine mountable. Mémoire persistante, dispatch autonome, 21 agents spécialisés.</div>
+        <div class="detail-item"><strong>Résultat</strong>Actif sur 2 machines. 170 tables. PRD validé. 9 sprints planifiés.</div>
         <div class="detail-item"><strong>Prix</strong>9 mois de développement.</div>
         <div class="detail-item"><strong>Survie</strong>Auto-hébergé. Open source à venir.</div>
       </div>
     </div>
 
-    <!-- Hall 32 Methodologie -->
-    <div class="registre-row reveal" data-detail="detail-hall32-meth">
+    <!-- Hall 32 -->
+    <div class="registre-row reveal" data-detail="detail-hall32">
       <span class="col-date">2019-2024</span>
       <span class="col-nom">Hall 32</span>
       <span class="col-sujet">Méthodologie agile hardware</span>
       <span class="col-statut statut-mort">Mort</span>
     </div>
-    <div class="registre-detail" id="detail-hall32-meth">
+    <div class="registre-detail" id="detail-hall32">
       <div class="detail-grid">
-        <div class="detail-item"><strong>Paradigme cassé</strong>Les методологии agiles sont conçues pour le software. Le hardware a des contraintes physiques incompressibles.</div>
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les méthodes agiles sont conçues pour le software. Le hardware a des contraintes physiques incompressibles.</div>
         <div class="detail-item"><strong>Résistance</strong>Le fondateur refusait de formaliser. "On fait, on ne documente pas."</div>
         <div class="detail-item"><strong>Système construit</strong>Lab de prototypage rapide. CA x2/an pendant 4 ans.</div>
         <div class="detail-item"><strong>Résultat</strong>CA doublait. Tout s'effondre à mon départ.</div>
@@ -831,75 +877,21 @@
       </div>
     </div>
 
-    <!-- Hall 32 Lab -->
-    <div class="registre-row reveal" data-detail="detail-hall32-lab">
-      <span class="col-date">2019-2024</span>
-      <span class="col-nom">Hall 32</span>
-      <span class="col-sujet">Lab prototypage rapide</span>
-      <span class="col-statut statut-mort">Mort</span>
-    </div>
-    <div class="registre-detail" id="detail-hall32-lab">
-      <div class="detail-grid">
-        <div class="detail-item"><strong>Paradigme cassé</strong>Le lab dormait dans un hangar. Aucun accès pour les équipes terrain.</div>
-        <div class="detail-item"><strong>Résistance</strong>Les équipes BE ne venaient pas. Pas le temps, pas le droit.</div>
-        <div class="detail-item"><strong>Système construit</strong>Lab de prototypage rapide. CA x2/an pendant 4 ans.</div>
-        <div class="detail-item"><strong>Résultat</strong>Disperse. Le fondateur a pris leLab chez lui.</div>
-        <div class="detail-item"><strong>Prix</strong>Équipement, formation.</div>
-        <div class="detail-item"><strong>Survie</strong>Mort.</div>
-      </div>
-    </div>
-
-    <!-- Hitachi CAO -->
-    <div class="registre-row reveal" data-detail="detail-hitachi-cao">
+    <!-- Hitachi -->
+    <div class="registre-row reveal" data-detail="detail-hitachi">
       <span class="col-date">2013-2019</span>
       <span class="col-nom">Hitachi</span>
-      <span class="col-sujet">CAO 3D paramétrique</span>
+      <span class="col-sujet">Automatisation conception ferroviaire</span>
       <span class="col-statut statut-mort">Mort à mon départ</span>
     </div>
-    <div class="registre-detail" id="detail-hitachi-cao">
+    <div class="registre-detail" id="detail-hitachi">
       <div class="detail-grid">
-        <div class="detail-item"><strong>Paradigme cassé</strong>Chaque ingénieur avait sa propre méthode. Pas de standard. Pas de partage.</div>
-        <div class="detail-item"><strong>Résistance</strong>Les seniors craignaient de perdre leur avantage compétitif.</div>
-        <div class="detail-item"><strong>Système construit</strong>CAO 3D paramétrique avec templates partagés.</div>
-        <div class="detail-item"><strong>Résultat</strong>Déployé. Utilisé 2 ans. Mort à mon départ.</div>
-        <div class="detail-item"><strong>Prix</strong>9 mois de conception.</div>
-        <div class="detail-item"><strong>Survie</strong>Mort à mon départ.</div>
-      </div>
-    </div>
-
-    <!-- Hitachi Automation -->
-    <div class="registre-row reveal" data-detail="detail-hitachi-auto">
-      <span class="col-date">2013-2019</span>
-      <span class="col-nom">Hitachi</span>
-      <span class="col-sujet">Automatisation conception</span>
-      <span class="col-statut statut-mort">Mort à mon départ</span>
-    </div>
-    <div class="registre-detail" id="detail-hitachi-auto">
-      <div class="detail-grid">
-        <div class="detail-item"><strong>Paradigme cassé</strong>Les tâches répétitives étaient faites manuellement. Burnout des ingénieurs.</div>
-        <div class="detail-item"><strong>Résistance</strong>Management opposant : "ça va remplacer des postes."</div>
-        <div class="detail-item"><strong>Système construit</strong>Automatisation de la conception : de 9 mois à 2 semaines.</div>
-        <div class="detail-item"><strong>Résultat</strong>2,9M€ économisés. Burnout en prime (le mien).</div>
-        <div class="detail-item"><strong>Prix</strong>Mon santé mentale. 2 ans de reconstruction.</div>
-        <div class="detail-item"><strong>Survie</strong>Mort à mon départ.</div>
-      </div>
-    </div>
-
-    <!-- Hitachi 3D -->
-    <div class="registre-row reveal" data-detail="detail-hitachi-3d">
-      <span class="col-date">2013-2019</span>
-      <span class="col-nom">Hitachi</span>
-      <span class="col-sujet">Impression 3D atelier</span>
-      <span class="col-statut statut-mort">Adopté atelier, rejeté BE</span>
-    </div>
-    <div class="registre-detail" id="detail-hitachi-3d">
-      <div class="detail-grid">
-        <div class="detail-item"><strong>Paradigme cassé</strong>L'atelier et le BE ne parlaient pas. Le BE dessinait, l'atelier exécutait.</div>
-        <div class="detail-item"><strong>Résistance</strong>Le BE refusait l'outil. "C'est pour les maquettistes."</div>
-        <div class="detail-item"><strong>Système construit</strong>Impression 3D à l'atelier.</div>
-        <div class="detail-item"><strong>Résultat</strong>Adoptée par l'atelier. Rejetée par le BE.</div>
-        <div class="detail-item"><strong>Prix</strong>Machine + formation atelier.</div>
-        <div class="detail-item"><strong>Survie</strong>Adopté atelier, rejeté BE.</div>
+        <div class="detail-item"><strong>Paradigme cassé</strong>Les tâches répétitives étaient faites manuellement. 9 mois par projet. Burnout des ingénieurs.</div>
+        <div class="detail-item"><strong>Résistance</strong>Management opposant : "ça va remplacer des postes." Seniors : "on perd notre avantage compétitif."</div>
+        <div class="detail-item"><strong>Système construit</strong>Automatisation de la conception + CAO 3D paramétrique + impression 3D atelier.</div>
+        <div class="detail-item"><strong>Résultat</strong>De 9 mois à 2 semaines. 2,9M€ économisés. Burnout en prime (le mien).</div>
+        <div class="detail-item"><strong>Prix</strong>Ma santé mentale. 2 ans de reconstruction.</div>
+        <div class="detail-item"><strong>Survie</strong>Mort à mon départ. Mais la crédibilité ferroviaire reste.</div>
       </div>
     </div>
 
@@ -921,7 +913,7 @@
       </div>
     </div>
 
-    <!-- ??? Ton projet -->
+    <!-- Ton projet -->
     <div class="registre-row-next">
       <span class="col-date">???</span>
       <span class="col-nom">Ton projet</span>
@@ -932,56 +924,74 @@
   </div>
 </section>
 
-<!-- ===== 5. LE STREAM ===== -->
+<!-- ===== 6. LE STREAM ===== -->
 <section class="stream">
   <div class="stream-inner">
     <span class="stream-header">Stream</span>
 
     <div class="stream-item reveal">
       <span class="stream-tag">Live</span>
-      <span class="stream-text">Nouveau paradigme détecté. Domaine : ingénierie fiabilité.</span>
+      <span class="stream-text">Conformité ferroviaire EN 50128 : premier vertical identifié. Propale en cours.</span>
+    </div>
+
+    <div class="stream-item reveal">
+      <span class="stream-tag">3j</span>
+      <span class="stream-text">Fractal7 engine : PRD validé, 9 sprints planifiés, dispatch autonome opérationnel.</span>
     </div>
 
     <div class="stream-item reveal">
       <span class="stream-tag">7j</span>
-      <span class="stream-text">undust.co réimaginé. Nouvelle structure. On recommence.</span>
+      <span class="stream-text">Trace7 : 3 douleurs concrètes identifiées. "Ne refais pas un PLM. Trouve un problème à résoudre."</span>
+    </div>
+
+    <div class="stream-item reveal">
+      <span class="stream-tag">7j</span>
+      <span class="stream-text">Stress-test investisseur deeptech sur Trace7 : positionnement challengé. Ça tient.</span>
     </div>
 
     <div class="stream-item reveal">
       <span class="stream-tag">14j</span>
-      <span class="stream-text">EC²R : méthode numérisée. 47 concepts mappés.</span>
+      <span class="stream-text">EC²R : mentor IA socratique. 47 concepts mappés. Plateforme déployée.</span>
     </div>
 
     <div class="stream-item reveal">
       <span class="stream-tag">30j</span>
-      <span class="stream-text">TRACE7 : premier prototype cotation. Ça tient.</span>
+      <span class="stream-text">TRACE7 : premier prototype cotation bi-directionnelle. Ça tient.</span>
     </div>
 
     <div class="stream-item reveal">
       <span class="stream-tag">60j</span>
-      <span class="stream-text">Hall 32 : 2 ans après. Confirmé : tout mort.</span>
+      <span class="stream-text">Hall 32 : 2 ans après. Confirmé : tout mort. Sans trace, rien ne survit.</span>
     </div>
 
   </div>
 </section>
 
-<!-- ===== 6. CTA FINAL ===== -->
+<!-- ===== 7. CTA FINAL ===== -->
 <section class="cta-final">
   <p class="cta-intro reveal">
     Tu regardes le chantier.<br>
     Si tu veux entrer dedans :
   </p>
 
-  <form class="cta-form reveal" action="https://formspree.io/f/undust" method="POST">
-    <input
-      type="text"
-      name="message"
-      class="cta-input"
-      placeholder="Écris ici ce qui est cassé chez toi"
-      autocomplete="off"
-    >
-    <button type="submit" class="cta-button">Ajouter au registre</button>
-  </form>
+  <ul class="cta-segments reveal">
+    <li>
+      <span class="cta-label">Surqualité / traçabilité ingénierie</span>
+      <a href="mailto:luc@undust.co?subject=Trace7%20—%20traçabilité%20ingénierie">&rarr; Conversation Trace7</a>
+    </li>
+    <li>
+      <span class="cta-label">Méthode collective à numériser</span>
+      <a href="mailto:luc@undust.co?subject=EC2R%20—%20méthode%20collective">&rarr; Conversation EC²R</a>
+    </li>
+    <li>
+      <span class="cta-label">Audit de conformité qui approche</span>
+      <a href="mailto:luc@undust.co?subject=Conformité%20—%20ferroviaire%20EN%2050128">&rarr; Conversation ferroviaire</a>
+    </li>
+    <li>
+      <span class="cta-label">Autre chose</span>
+      <a href="mailto:luc@undust.co?subject=undust.co%20—%20contact">&rarr; luc@undust.co</a>
+    </li>
+  </ul>
 
   <div class="social-links reveal">
     <a href="https://linkedin.com/in/lucletoffe" target="_blank" rel="noopener">LinkedIn</a>
@@ -994,7 +1004,7 @@
 (function() {
   'use strict';
 
-  // ── Scroll reveal ──
+  // Scroll reveal
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries) {
@@ -1010,7 +1020,7 @@
     revealEls.forEach(function(el) { el.classList.add('visible'); });
   }
 
-  // ── Registre expand/collapse ──
+  // Registre expand/collapse
   var rows = document.querySelectorAll('.registre-row[data-detail]');
   rows.forEach(function(row) {
     row.addEventListener('click', function() {
@@ -1020,24 +1030,14 @@
 
       var isOpen = detail.classList.contains('open');
 
-      // Close all
       document.querySelectorAll('.registre-detail.open').forEach(function(d) {
         d.classList.remove('open');
       });
 
-      // Toggle this one
       if (!isOpen) {
         detail.classList.add('open');
         detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
-    });
-  });
-
-  // ── Cicatrice click → smooth scroll to registre ──
-  document.querySelectorAll('.cicatrice[data-target]').forEach(function(el) {
-    el.addEventListener('click', function() {
-      var target = document.getElementById('registre');
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
   });
 
