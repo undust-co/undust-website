@@ -1,0 +1,5 @@
+alias dev='FRACTAL_CODING_AGENT_DIR=~/.fractal/agent-dev fractal'
+alias obsync='cd ~/Obsidian/Expanse && git add -A && git commit -m "sync $(date +%Y-%m-%d\ %H:%M)" && git push'
+alias tab-color='~/.config/kitty/tab-color.sh'
+alias tab-name='kitty @ set-tab-title'
+alias health='~/.fractal/scripts/monitoring/health-check'

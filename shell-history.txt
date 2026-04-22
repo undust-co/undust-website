@@ -1,0 +1,1 @@
+-rw------- 1 ll ll 69174 Apr 21 23:42 /home/ll/.bash_history

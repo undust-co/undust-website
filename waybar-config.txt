@@ -1,0 +1,6 @@
+total 16
+drwxr-xr-x 1 ll ll   86 Apr 22 12:55 .
+drwxr-xr-x 1 ll ll 2496 Apr 20 17:41 ..
+-rw-r--r-- 1 ll ll 5653 Apr 22 12:55 config.jsonc
+-rw-r--r-- 1 ll ll  384 Feb 17 12:24 hyprwhspr-module.jsonc
+-rw-r--r-- 1 ll ll 1660 Mar  5 23:06 style.css
